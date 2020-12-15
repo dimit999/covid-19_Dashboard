@@ -582,6 +582,11 @@ textarea {
           justify-content: space-between;
 }
 
+.countries-table .paginate_button + .active > a {
+  background-color: #313186;
+  border-color: #876ED7;
+}
+
 .common-tables {
   padding: 20px 20px;
   font-weight: bold;
@@ -696,5 +701,72 @@ textarea {
 
 .cases_value, .deaths_value, .recovered_value {
   background-color: #4F4FD9;
+}
+
+.footer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.footer_wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 10px;
+}
+
+@media (min-width: 767px) and (max-width: 1199px) {
+  .footer_wrapper {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+}
+
+@media (min-width: 374px) and (max-width: 767px) {
+  .footer_wrapper {
+    padding-left: 44px;
+    padding-right: 30px;
+  }
+}
+
+@media (min-width: 319px) and (max-width: 374px) {
+  .footer_wrapper {
+    padding-left: 30px;
+    padding-left: 44px;
+  }
+}
+
+.footer_wrapper .year {
+  color: white;
+  text-decoration: none;
+}
+
+.footer_wrapper .github_img__logo {
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: .25rem;
+}
+
+.footer_wrapper .social__github_accounts {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.footer_wrapper .social__github_img:first-child {
+  margin-right: 10px;
+}
+
+.footer_wrapper .course_link__logo {
+  background: white;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: .55rem;
+  padding: 0 5px;
 }
 /*# sourceMappingURL=style.css.map */

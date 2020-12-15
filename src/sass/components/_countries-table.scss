@@ -50,4 +50,9 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .paginate_button+.active > a {
+    background-color: $color-background-top-elem;
+    border-color: $color-border;
+  }
 }
