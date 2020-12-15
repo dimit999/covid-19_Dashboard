@@ -4,4 +4,16 @@ html {
 
 *, *::before, *::after {
   box-sizing: inherit;
+  font-family: sans-serif;
+  color: $color-white;
+  font-weight: 400;
+}
+
+body {
+  background-image: url('../assets/images/jpeg/bg.jpeg');
+  background-repeat: no-repeat center fixed;
+  background-size: cover;
+  background-position-y: no-repeat center;
+  background-position-x: no-repeat;
+  color: $color-white;
 }
