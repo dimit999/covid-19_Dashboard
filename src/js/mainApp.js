@@ -1,4 +1,8 @@
 import './spinner';
+import App from '../components/App';
+
+const app = new App();
+app.init();
 
 function requireAll(r) {
   r.keys().forEach(r);
