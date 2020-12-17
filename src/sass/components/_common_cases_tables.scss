@@ -3,7 +3,7 @@
   padding: 20px 20px;
   font-weight: bold;
 
-  &_county-title__wrapper {
+  &__country-title {
     display: flex;
     justify-content: flex-end;
   }
@@ -46,6 +46,7 @@
   & tr {
     border: 1px solid $color-border;
     padding: .35em;
+    text-align: center;
   }
 
   & th,

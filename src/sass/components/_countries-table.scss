@@ -53,7 +53,6 @@
 
   .country-btn {
     color: $color-white;
-    @include text-shadow;
     background-color: $color-purple-light;
     border-color: $color-border-dark;
     width: 100%;
@@ -69,10 +68,14 @@
     justify-content: space-between;
   }
 
-  .countries-table-column {
+  .countries-table__column {
     text-align: center;
   }
 
+  .countries-table__body {
+    text-align: center;
+  }
+  
   .active > a {
     color: $color-white;
     background-color: $color-background-top-elem;

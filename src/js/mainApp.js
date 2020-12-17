@@ -1,8 +1,8 @@
 import './spinner';
 
 /* Import assets to dist folder */
-function requireAll(r) {
-  r.keys().forEach(r);
+function requireAll(assets) {
+  assets.keys().forEach(assets);
 }
 
 requireAll(require.context('../assets', true, /\.(png|svg|jpg|jpe?g|gif)$/));
