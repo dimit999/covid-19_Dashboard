@@ -47,6 +47,7 @@ export const fetchWorld = async (body, entry = '') => {
   return data;
 };
 
+/* это на будущее, возможно придется переделывать вовсе
 const sortMethods = {
   sortAplphabet(keys, object, prop, mode) {
     const arr = keys.sort((a, b) => {
@@ -84,4 +85,4 @@ export const sortObject = (object, prop, mode = 0) => {
   });
 
   return newObject;
-};
+}; */
