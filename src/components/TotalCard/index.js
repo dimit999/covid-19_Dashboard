@@ -1,3 +1,3 @@
-import TotalCard from './TotalCard';
+import TotalCard from './totalCard';
 
 export default TotalCard;

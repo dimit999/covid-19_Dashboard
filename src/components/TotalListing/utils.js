@@ -1,9 +1,9 @@
 const getChunk = (name) => {
   const chunk = `
-    <div class="cards_statistic__default-card">
-      <div class="card">
-        <div class="card_title">Total ${name}</div>
-        <div class="card_value">0</div>
+    <div class="card-item">
+      <div class="card-item__content">
+        <div class="card-item__title">Total ${name}</div>
+        <div class="card-item__value">0</div>
       </div>
     </div>`;
 

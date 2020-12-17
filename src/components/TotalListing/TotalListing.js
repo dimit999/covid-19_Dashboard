@@ -18,8 +18,8 @@ export default class TotalListing {
     let cards = null;
     const cardsTemplates = this.types.map((name) => getChunk(name));
 
-    this.wrapper.innerHTML = `<div class="cards_statistic_wrapper wrapper">${cardsTemplates.join(' ')}</div>`;
-    cards = document.querySelectorAll('.cards_statistic__default-card');
+    this.wrapper.innerHTML = `<div class="cards_statistic__wrapper wrapper">${cardsTemplates.join(' ')}</div>`;
+    cards = document.querySelectorAll('.card-item');
     this.initCards(cards);
   }
 }
