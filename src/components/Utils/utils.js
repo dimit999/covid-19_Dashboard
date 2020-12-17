@@ -36,6 +36,7 @@ const initFetch = async (baseUrl, body) => {
   const url = baseUrl;
   const queryString = Object.keys(body).map((query) => `${query}=${body[query]}`).join('&');
   const totalData = await fetch(`${url}?${queryString}`).then((data) => data.json());
+
   return totalData;
 };
 
