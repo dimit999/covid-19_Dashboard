@@ -55,6 +55,12 @@
     color: $color-white;
     background-color: $color-purple-light;
     border-color: $color-border-dark;
+    width: 100%;
+  }
+
+  .country-btn:hover, .country-btn:focus {
+    background-color: $color-border-dark;
+    border-color: $color-purple-light;
   }
 
   .row {
@@ -70,10 +76,6 @@
     color: $color-white;
     background-color: $color-background-top-elem;
     border-color: $color-border;
-  }
-
-  .country-btn {
-    width: 100%;
   }
 
 

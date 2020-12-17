@@ -588,6 +588,12 @@ textarea {
   color: white;
   background-color: #956BD6;
   border-color: #7D44D6;
+  width: 100%;
+}
+
+.countries-table .country-btn:hover, .countries-table .country-btn:focus {
+  background-color: #7D44D6;
+  border-color: #956BD6;
 }
 
 .countries-table .row {
@@ -607,10 +613,6 @@ textarea {
   color: white;
   background-color: #313186;
   border-color: #876ED7;
-}
-
-.countries-table .country-btn {
-  width: 100%;
 }
 
 .countries-table .table-sortable > thead > tr > th {
