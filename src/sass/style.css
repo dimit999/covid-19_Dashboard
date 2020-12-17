@@ -499,6 +499,7 @@ textarea {
 .countries-table {
   color: white;
   font-weight: bold;
+  /* Sorting table logic start */
   /* Default sortable indicator */
   /* !Default */
   /* Default sortable indicator:hover */
@@ -507,6 +508,7 @@ textarea {
   /* !Ascending */
   /* Descending sortable indicator */
   /* !Descending */
+  /* Sorting table logic end */
 }
 
 @media (min-width: 1200px) {
@@ -624,17 +626,7 @@ textarea {
   height: 0;
   width: 0;
   right: 10px;
-  /* (right padding / 2) - arrow width */
   top: 16px;
-  /* ((padding * 2) + line height) - arrow height */
-  /** As pointed out by Dave Everitt in 
-     * https://css-tricks.com/snippets/css/css-triangle/
-     * The arrow is not an equilateral triangle.
-     * the height is 86.6% of the width.
-     * Notice the above code does not subract the border 
-     * width exactly. It is subtracting
-     * (rounded) border width * 86.6%
-     **/
 }
 
 .countries-table .table-sortable > thead > tr > th:after {
