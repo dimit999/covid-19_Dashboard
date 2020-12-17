@@ -1,6 +1,6 @@
 // Главный класс - будет запускать дочерние классы - компоненты.
 // Также следить за их изменениями, отсылать через класс-посредник методы
-import utils from '../Utils';
+import utils from '../../utils';
 import totalsTypes from './constants';
 import TotalListing from '../TotalListing';
 
