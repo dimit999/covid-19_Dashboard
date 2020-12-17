@@ -1,0 +1,12 @@
+.header {
+  text-align: center;
+  padding: 40px 20px;
+
+  .header_title {
+    color: $color-white;
+    font-weight: bold;
+    font-size: 2em;
+    
+    @include text-shadow;
+  }
+}

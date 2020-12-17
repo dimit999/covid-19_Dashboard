@@ -1,0 +1,58 @@
+.countries-table {
+  color: $color-white;
+  font-weight: bold;
+
+  @include media-laptop {
+    padding: 50px 20px;
+  }
+
+  @include media-tablet {
+    padding: 50px 20px;
+  }
+
+  @include media-mobileMiddle {
+    padding: 20px 7px;
+  }
+
+  @include media-preMobileSmall {
+    padding: 20px 5px;
+  }
+
+  &_wrapper {
+    @include center-item-and-text;
+  }
+
+  .dataTables_length, .dataTables_info {
+    margin-top: 6px;
+    padding-bottom: 5px;
+    text-align: left;
+  }
+
+  .dataTables_paginate {
+    @include media-tablet {
+      margin-top: 10px;
+    }
+
+    @include media-mobileMiddle {
+      margin-top: 10px;
+
+      @include center-item-and-text;
+    }
+
+    @include media-preMobileSmall {
+      margin-top: 10px;
+
+      @include center-item-and-text;
+    }
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .paginate_button+.active > a {
+    background-color: $color-background-top-elem;
+    border-color: $color-border;
+  }
+}

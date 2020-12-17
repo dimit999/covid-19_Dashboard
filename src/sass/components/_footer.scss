@@ -1,0 +1,50 @@
+.footer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  &_wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    @include media-tablet {
+      padding-left: 70px;
+      padding-right: 70px;
+    }
+
+    @include media-mobileMiddle {
+      padding-left: 44px;
+      padding-right: 30px;
+    }
+
+    @include media-preMobileSmall {
+      padding-left: 30px;
+      padding-left: 44px;
+    }
+    padding-bottom: 10px;
+    & .year {
+      color: $color-white;
+      text-decoration: none;
+    }
+    & .github_img__logo {
+      background-clip: border-box;
+      border: 1px solid rgba(0,0,0,.125);
+      border-radius: .25rem;
+    }
+
+    .social__github_accounts {
+      display: inline-flex;
+    }
+
+    .social__github_img:first-child {
+      margin-right: 10px;
+    }
+
+    & .course_link__logo {
+      background: $color-white;
+      background-clip: border-box;
+      border: 1px solid rgba(0,0,0,.125);
+      border-radius: .55rem;
+      padding: 0 5px;
+    }
+  }
+}
