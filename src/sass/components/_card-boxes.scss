@@ -2,56 +2,56 @@
   padding-left: 10px;
   padding-right: 10px;
 
-  .cards_statistic_wrapper {
+  &__wrapper {
     display: flex;
     justify-content: center;
   }
+}
 
-  &__default-card {
-    text-align: center;
-    margin-top: 1em;
-    border: $card-border solid $color-border;
+.card-item {
+  text-align: center;
+  margin-top: 1em;
+  border: $card-border solid $color-border;
+  border-radius: .5em;
+  margin: 0 10px;
+  width: 33%;
+
+  &__content {
+    border: none;
     border-radius: .5em;
-    margin: 0 10px;
-    width: 33%;
+  }
 
-    .card {
-      border: none;
-      border-radius: .5em;
+  &__title {
+    border-radius: 7px 7px 0 0;
+    font-size: 1.5em;
+    background-color: $color-background-top-elem;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
-      &_title {
-        border-radius: 7px 7px 0 0;
-        font-size: 1.5em;
-        background-color: $color-background-top-elem;
-        padding-top: 10px;
-        padding-bottom: 10px;
+    @include text-shadow;
 
-        @include text-shadow;
-
-        @include media-tabletSmall {
-          @include line-break;
-        }
-
-        @include media-mobileMiddle {
-          @include line-break;
-        }
-
-        @include media-preMobileSmall {
-          @include line-break;
-        }
-      }
-
-      &_value {
-        font-weight: bold;
-        font-size: 1.5em;
-        background-color: $color-background-bottom-elem;
-        align-items: center;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border-radius: 0 0 7px 7px;
-
-        @include text-shadow;
-      }
+    @include media-tabletSmall {
+      @include line-break;
     }
+
+    @include media-mobileMiddle {
+      @include line-break;
+    }
+
+    @include media-preMobileSmall {
+      @include line-break;
+    }
+  }
+
+  &__value {
+    font-weight: bold;
+    font-size: 1.5em;
+    background-color: $color-background-bottom-elem;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 0 0 7px 7px;
+
+    @include text-shadow;
   }
 }

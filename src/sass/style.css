@@ -433,7 +433,7 @@ textarea {
   padding-right: 10px;
 }
 
-.cards_statistic .cards_statistic_wrapper {
+.cards_statistic__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -442,7 +442,7 @@ textarea {
           justify-content: center;
 }
 
-.cards_statistic__default-card {
+.card-item {
   text-align: center;
   margin-top: 1em;
   border: 2px solid #876ED7;
@@ -451,12 +451,12 @@ textarea {
   width: 33%;
 }
 
-.cards_statistic__default-card .card {
+.card-item__content {
   border: none;
   border-radius: .5em;
 }
 
-.cards_statistic__default-card .card_title {
+.card-item__title {
   border-radius: 7px 7px 0 0;
   font-size: 1.5em;
   background-color: #313186;
@@ -466,24 +466,24 @@ textarea {
 }
 
 @media (min-width: 767px) and (max-width: 615px) {
-  .cards_statistic__default-card .card_title {
+  .card-item__title {
     word-spacing: 100vw;
   }
 }
 
 @media (min-width: 374px) and (max-width: 767px) {
-  .cards_statistic__default-card .card_title {
+  .card-item__title {
     word-spacing: 100vw;
   }
 }
 
 @media (min-width: 319px) and (max-width: 374px) {
-  .cards_statistic__default-card .card_title {
+  .card-item__title {
     word-spacing: 100vw;
   }
 }
 
-.cards_statistic__default-card .card_value {
+.card-item__value {
   font-weight: bold;
   font-size: 1.5em;
   background-color: #4F4FD9;
@@ -499,6 +499,16 @@ textarea {
 .countries-table {
   color: white;
   font-weight: bold;
+  /* Sorting table logic start */
+  /* Default sortable indicator */
+  /* !Default */
+  /* Default sortable indicator:hover */
+  /* !Default:hover */
+  /* Ascending sortable indicator */
+  /* !Ascending */
+  /* Descending sortable indicator */
+  /* !Descending */
+  /* Sorting table logic end */
 }
 
 @media (min-width: 1200px) {
@@ -526,9 +536,6 @@ textarea {
 }
 
 .countries-table_wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -573,6 +580,22 @@ textarea {
   }
 }
 
+.countries-table .dataTable-pagination {
+  background-color: white;
+}
+
+.countries-table .country-btn {
+  color: white;
+  background-color: #956BD6;
+  border-color: #7D44D6;
+  width: 100%;
+}
+
+.countries-table .country-btn:hover, .countries-table .country-btn:focus {
+  background-color: #7D44D6;
+  border-color: #956BD6;
+}
+
 .countries-table .row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -582,9 +605,63 @@ textarea {
           justify-content: space-between;
 }
 
-.countries-table .paginate_button + .active > a {
+.countries-table .countries-table__column {
+  text-align: center;
+}
+
+.countries-table .countries-table__body {
+  text-align: center;
+}
+
+.countries-table .active > a {
+  color: white;
   background-color: #313186;
   border-color: #876ED7;
+}
+
+.countries-table .table-sortable > thead > tr > th {
+  cursor: pointer;
+  position: relative;
+}
+
+.countries-table .table-sortable > thead > tr > th:after,
+.countries-table .table-sortable > thead > tr > th:after,
+.countries-table .table-sortable > thead > tr > th:after {
+  content: ' ';
+  position: absolute;
+  height: 0;
+  width: 0;
+  right: 10px;
+  top: 16px;
+}
+
+.countries-table .table-sortable > thead > tr > th:after {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ccc;
+  border-bottom: 0px solid transparent;
+}
+
+.countries-table .table-sortable > thead > tr > th:hover:after {
+  border-top: 5px solid #888;
+}
+
+.countries-table .table-sortable > thead > tr > th.asc:after {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 0px solid transparent;
+  border-bottom: 5px solid #333;
+}
+
+.countries-table .table-sortable > thead > tr > th.asc:hover:after {
+  border-bottom: 5px solid #888;
+}
+
+.countries-table .table-sortable > thead > tr > th.desc:after {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #333;
+  border-bottom: 5px solid transparent;
 }
 
 .common-tables {
@@ -592,7 +669,7 @@ textarea {
   font-weight: bold;
 }
 
-.common-tables_county-title__wrapper {
+.common-tables__country-title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -638,6 +715,7 @@ textarea {
 .common-table tr {
   border: 1px solid #876ED7;
   padding: .35em;
+  text-align: center;
 }
 
 .common-table th,
@@ -708,7 +786,7 @@ textarea {
   margin-bottom: 20px;
 }
 
-.footer_wrapper {
+.footer__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -721,48 +799,48 @@ textarea {
 }
 
 @media (min-width: 767px) and (max-width: 1199px) {
-  .footer_wrapper {
+  .footer__wrapper {
     padding-left: 70px;
     padding-right: 70px;
   }
 }
 
 @media (min-width: 374px) and (max-width: 767px) {
-  .footer_wrapper {
+  .footer__wrapper {
     padding-left: 44px;
     padding-right: 30px;
   }
 }
 
 @media (min-width: 319px) and (max-width: 374px) {
-  .footer_wrapper {
+  .footer__wrapper {
     padding-left: 30px;
     padding-left: 44px;
   }
 }
 
-.footer_wrapper .year {
+.footer__wrapper .year {
   color: white;
   text-decoration: none;
 }
 
-.footer_wrapper .github_img__logo {
+.footer__wrapper .github_img__logo {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: .25rem;
 }
 
-.footer_wrapper .social__github_accounts {
+.footer__wrapper .social__github_accounts {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
-.footer_wrapper .social__github_img:first-child {
+.footer__wrapper .social__github_img:first-child {
   margin-right: 10px;
 }
 
-.footer_wrapper .course_link__logo {
+.footer__wrapper .course_link__logo {
   background: white;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);

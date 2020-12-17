@@ -54,6 +54,7 @@
     "style-loader": "^0.23.1",
     "sugarss": "^3.0.3",
     "tailwindcss": "^1.9.2",
+    "vanilla-datatables": "^1.6.16",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
@@ -69,7 +70,12 @@
       "git add"
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "datatables.net": "^1.10.22",
+    "datatables.net-dt": "^1.10.22",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dimit999/covid-19_Dashboard.git"

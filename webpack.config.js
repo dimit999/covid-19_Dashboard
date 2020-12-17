@@ -59,8 +59,8 @@ module.exports = {
             options: {
               postcssOptions: {
                 plugins: [
-                  ['precss'],
-                  ['autoprefixer'],
+                  precss,
+                  autoprefixer,
                 ],
               },
             },
@@ -96,6 +96,10 @@ module.exports = {
       {
         test: /\.html$/, // Для отрисовки картинок
         loader: 'html-loader',
+      },
+      {
+        test: /vanilla-datatables.*/,
+        loader: 'imports?define=>false'
       },
     ],
   },
