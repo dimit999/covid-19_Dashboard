@@ -499,6 +499,14 @@ textarea {
 .countries-table {
   color: white;
   font-weight: bold;
+  /* Default sortable indicator */
+  /* !Default */
+  /* Default sortable indicator:hover */
+  /* !Default:hover */
+  /* Ascending sortable indicator */
+  /* !Ascending */
+  /* Descending sortable indicator */
+  /* !Descending */
 }
 
 @media (min-width: 1200px) {
@@ -526,9 +534,6 @@ textarea {
 }
 
 .countries-table_wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -573,6 +578,16 @@ textarea {
   }
 }
 
+.countries-table .dataTable-pagination {
+  background-color: white;
+}
+
+.countries-table .country-btn {
+  color: white;
+  background-color: #956BD6;
+  border-color: #7D44D6;
+}
+
 .countries-table .row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -582,9 +597,73 @@ textarea {
           justify-content: space-between;
 }
 
-.countries-table .paginate_button + .active > a {
+.countries-table .countries-table-column {
+  text-align: center;
+}
+
+.countries-table .active > a {
+  color: white;
   background-color: #313186;
   border-color: #876ED7;
+}
+
+.countries-table .country-btn {
+  width: 100%;
+}
+
+.countries-table .table-sortable > thead > tr > th {
+  cursor: pointer;
+  position: relative;
+}
+
+.countries-table .table-sortable > thead > tr > th:after,
+.countries-table .table-sortable > thead > tr > th:after,
+.countries-table .table-sortable > thead > tr > th:after {
+  content: ' ';
+  position: absolute;
+  height: 0;
+  width: 0;
+  right: 10px;
+  /* (right padding / 2) - arrow width */
+  top: 16px;
+  /* ((padding * 2) + line height) - arrow height */
+  /** As pointed out by Dave Everitt in 
+     * https://css-tricks.com/snippets/css/css-triangle/
+     * The arrow is not an equilateral triangle.
+     * the height is 86.6% of the width.
+     * Notice the above code does not subract the border 
+     * width exactly. It is subtracting
+     * (rounded) border width * 86.6%
+     **/
+}
+
+.countries-table .table-sortable > thead > tr > th:after {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ccc;
+  border-bottom: 0px solid transparent;
+}
+
+.countries-table .table-sortable > thead > tr > th:hover:after {
+  border-top: 5px solid #888;
+}
+
+.countries-table .table-sortable > thead > tr > th.asc:after {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 0px solid transparent;
+  border-bottom: 5px solid #333;
+}
+
+.countries-table .table-sortable > thead > tr > th.asc:hover:after {
+  border-bottom: 5px solid #888;
+}
+
+.countries-table .table-sortable > thead > tr > th.desc:after {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #333;
+  border-bottom: 5px solid transparent;
 }
 
 .common-tables {

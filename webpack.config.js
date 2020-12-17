@@ -97,6 +97,10 @@ module.exports = {
         test: /\.html$/, // Для отрисовки картинок
         loader: 'html-loader',
       },
+      {
+        test: /vanilla-datatables.*/,
+        loader: 'imports?define=>false'
+      },
     ],
   },
   // Вебпак плагины используются для настройки процесса сборки.
