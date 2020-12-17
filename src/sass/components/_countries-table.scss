@@ -56,11 +56,11 @@
     background-color: $color-purple-light;
     border-color: $color-border-dark;
     width: 100%;
-  }
 
-  .country-btn:hover, .country-btn:focus {
-    background-color: $color-border-dark;
-    border-color: $color-purple-light;
+    &:hover, &:focus {
+      background-color: $color-border-dark;
+      border-color: $color-purple-light;
+    }
   }
 
   .row {
