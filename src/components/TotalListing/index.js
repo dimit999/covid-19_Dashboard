@@ -1,3 +1,3 @@
-import TotalListing from './TotalListing';
+import TotalListing from './totalListing';
 
 export default TotalListing;

@@ -433,7 +433,7 @@ textarea {
   padding-right: 10px;
 }
 
-.cards_statistic__wrapper {
+.cards_statistic .cards_statistic__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

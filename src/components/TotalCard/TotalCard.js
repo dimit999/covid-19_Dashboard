@@ -6,7 +6,7 @@ export default class TotalCard {
     this.item = item;
     this.type = type;
     this.count = 0;
-    this.countElem = item.querySelector('.card_value');
+    this.countElem = item.querySelector('.card-item__value');
     this.initCount(type);
   }
 
