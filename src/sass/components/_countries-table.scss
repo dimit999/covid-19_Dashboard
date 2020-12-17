@@ -53,6 +53,7 @@
 
   .country-btn {
     color: $color-white;
+    @include text-shadow;
     background-color: $color-purple-light;
     border-color: $color-border-dark;
     width: 100%;
