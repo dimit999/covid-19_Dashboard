@@ -12,7 +12,7 @@ export default class TotalCard {
 
   async initCount(type) {
     const countData = await utils.fetchWorld({ yesterday: false }, worldParameters.all);
-    this.count = countData[type];
+    this.count = countData[type].toLocaleString();
     this.renderCount();
   }
 
