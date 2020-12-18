@@ -1,5 +1,5 @@
-import utils from '../../utils';
-import worldometers from './constants';
+import utils from '../../Utils';
+import worldParameters from './constants';
 
 export default class TotalCard {
   constructor(item, type) {
@@ -11,7 +11,7 @@ export default class TotalCard {
   }
 
   async initCount(type) {
-    const countData = await utils.fetchWorld({ yesterday: false }, worldometers.all);
+    const countData = await utils.fetchWorld({ yesterday: false }, worldParameters.all);
     this.count = countData[type];
     this.renderCount();
   }
