@@ -1,4 +1,5 @@
 import * as utils from './ConditionalListing.utils';
+import ConditionalCard from '../ConditionalCard';
 
 export default class ConditionalListing {
   constructor(data) {
@@ -9,7 +10,7 @@ export default class ConditionalListing {
 
   initCards(tableCards) {
     tableCards.forEach((tableCard, idx) => {
-      this.cards[idx] = new TableCard(tableCard, this.data[idx]);
+      this.tableCards[idx] = new ConditionalCard(tableCard, this.data[idx]);
     });
   }
 
@@ -18,7 +19,7 @@ export default class ConditionalListing {
     const tableCardsTemplates = this.data.map((data) => utils.getChunk(data));
 
     this.wrapper.innerHTML = `${tableCardsTemplates.join(' ')}`;
-    tableCards = document.querySelectorAll('.card-item');
+    tableCards = document.querySelectorAll('.common-table');
     this.initCards(tableCards);
   }
 }

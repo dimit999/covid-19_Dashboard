@@ -1,5 +1,5 @@
 import utils from '../../Utils';
-import worldParameters from './constants';
+import worldParameters from '../../constants/constants';
 
 export default class TotalCard {
   constructor(item, type) {
