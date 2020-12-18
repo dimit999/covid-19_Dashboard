@@ -70,12 +70,6 @@
       "git add"
     ]
   },
-  "dependencies": {
-    "datatables.net": "^1.10.22",
-    "datatables.net-dt": "^1.10.22",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dimit999/covid-19_Dashboard.git"

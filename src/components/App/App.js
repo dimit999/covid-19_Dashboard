@@ -1,6 +1,6 @@
 // Главный класс - будет запускать дочерние классы - компоненты.
 // Также следить за их изменениями, отсылать через класс-посредник методы
-import utils from '../../utils';
+import utils from '../../Utils';
 import totalsTypes from './constants';
 import TotalListing from '../TotalListing';
 
@@ -22,7 +22,7 @@ export default class App {
 
   stateListener() {
     // state менеджер, будет следить за изменениями объектов
-    /* observer.subscribe((datas) => {
+    /* observer.subscribe((data) => {
 
     });
   } */

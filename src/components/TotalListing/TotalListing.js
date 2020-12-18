@@ -1,4 +1,4 @@
-import getChunk from './utils';
+import getChunk from './TotalListing.utils';
 import TotalCard from '../TotalCard';
 
 export default class TotalListing {
