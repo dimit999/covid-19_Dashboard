@@ -1,5 +1,5 @@
 import utils from '../../Utils';
-import worldParameters from '../../constants/constants';
+import * as constants from '../../constants/constants';
 
 export default class ConditionalCard {
   constructor(item, data) {
@@ -21,7 +21,9 @@ export default class ConditionalCard {
   }
 
   async initCount() {
-    const countData = await utils.fetchWorld(this.data.params, worldParameters.all);
+    const url = constants.apiUrls.worldometers;
+    const urlParameter = constants.worldParameters.all;
+    const countData = await utils.fetchData(url, this.data.params, urlParameter);
 
     this.countsData = countData;
     this.renderCount();
