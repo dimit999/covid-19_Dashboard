@@ -41,6 +41,7 @@ export default class MainTable {
     const countData = await utils.fetchData(url, this.data.sort, urlParameter);
 
     this.countsData = countData;
+    console.log(countData);
     this.renderCount();
   }
 
@@ -60,7 +61,6 @@ export default class MainTable {
       tr.append(flagElem);
       tr.append(countryBtn);
     });
-
-    this.table = new DataTable("#dataTable");
+    this.table = new window.DataTable('#dataTable');
   }
 }
