@@ -1,17 +1,20 @@
 // Главный класс - будет запускать дочерние классы - компоненты.
 // Также следить за их изменениями, отсылать через класс-посредник методы
 import utils from '../../Utils';
-import totalsTypes from './constants';
+import * as constants from './constants';
 import TotalListing from '../TotalListing';
+import ConditionalListing from '../ConditionalListing';
 
 export default class App {
   constructor() {
-    this.totalListing = utils.listing(TotalListing, totalsTypes);
+    this.totalListing = utils.listing(TotalListing, constants.totalsTypes);
+    this.ConditionalListing = utils.listing(ConditionalListing, constants.conditionalValues);
   }
 
   init() {
     // запуск
     this.totalListing.render();
+    this.ConditionalListing.render();
     // this.stateListener();
     // this.events();
   }
