@@ -77,7 +77,8 @@ const sortMethods = {
 export const sortObject = (object, prop, mode = 0) => {
   const newObject = {};
   const objKeys = Object.keys(object);
-  const method = Number.isNaN(parseFloat(object[objKeys['0']][prop])) ? 'sortAplphabet' : 'sortNumeric';
+  const method =
+  Number.isNaN(parseFloat(object[objKeys['0']][prop])) ? 'sortAplphabet' : 'sortNumeric';
   const keys = sortMethods[method](objKeys, object, prop, mode);
 
   keys.forEach((key) => {
