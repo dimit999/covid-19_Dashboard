@@ -54,7 +54,6 @@
     "style-loader": "^0.23.1",
     "sugarss": "^3.0.3",
     "tailwindcss": "^1.9.2",
-    "vanilla-datatables": "^1.6.16",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
@@ -78,5 +77,14 @@
     "url": "https://github.com/dimit999/covid-19_Dashboard/issues"
   },
   "homepage": "https://github.com/dimit999/covid-19_Dashboard#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@amcharts/amcharts4": "^4.10.13",
+    "@amcharts/amcharts4-geodata": "^4.1.19",
+    "amcharts3": "^3.21.15",
+    "box2dweb": "^2.1.0-b",
+    "chart.js": "^2.9.4",
+    "sorttable": "^1.0.0",
+    "vanilla-datatables": "^1.6.16"
+  }
 }

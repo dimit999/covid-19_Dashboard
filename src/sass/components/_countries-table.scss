@@ -82,6 +82,9 @@
     border-color: $color-border;
   }
 
+  .dataTable-sorter:after, .dataTable-sorter:before {
+    content: none;
+  }
 
   /* Sorting table logic start */
   .table-sortable > thead > tr > th {
@@ -104,14 +107,14 @@
   .table-sortable > thead > tr > th:after {
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid #ccc;
+    border-top: 5px solid $color-white;
     border-bottom: 0px solid transparent;
   }
   /* !Default */
 
   /* Default sortable indicator:hover */
   .table-sortable > thead > tr > th:hover:after {
-    border-top: 5px solid #888;
+    border-top: 5px solid $color-purple-light;
   }
   /* !Default:hover */
 
@@ -120,10 +123,10 @@
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 0px solid transparent;
-    border-bottom: 5px solid #333;
+    border-bottom: 5px solid $color-white;
   }
   .table-sortable > thead > tr > th.asc:hover:after {
-    border-bottom: 5px solid #888;
+    border-bottom: 5px solid $color-white;
   }
   /* !Ascending */
 
@@ -131,7 +134,7 @@
   .table-sortable > thead > tr > th.desc:after {
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid #333;
+    border-top: 5px solid $color-white;
     border-bottom: 5px solid transparent;
   }
   /* !Descending */

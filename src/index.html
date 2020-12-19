@@ -19,29 +19,36 @@
       </div>
     </div>
      <!-- /.header -->
-    <div class="cards_statistic">
-      <!-- <div class="cards_statistic__wrapper wrapper">
-        <div class="card-item">
-          <div class="card-item__content">
-            <div class="card-item__title">Total Cases</div>
-            <div class="card-item__value">0</div>
-          </div>
-        </div>
-        <div class="card-item">
-          <div class="card-item__content">
-            <div class="card-item__title">Total Deaths</div>
-            <div class="card-item__value">0</div>
-          </div>
-        </div>
-        <div class="card-item">
-          <div class="card-item__content">
-            <div class="card-item__title">Total Recovered</div>
-            <div class="card-item__value">0</div>
-          </div>
-        </div>
-      </div> -->
-    </div>
+    <div class="cards_statistic"></div>
     <!-- /.cards_statistic -->
+    <div class="map-container">
+      <div class="map-container__wrapper wrapper">
+        <div class="line-chart">
+          <div class="aspect-ratio">
+            <canvas id="chart"></canvas>
+          </div>
+        </div>
+        <div class="radio-buttons-group">
+          <div class="row-1">
+            <input class="radio-buttons-group__input" type="radio" name="size" id="size_1" value="small" checked />
+            <label class="radio-buttons-group__btn" for="size_1">Total</label>
+
+            <input class="radio-buttons-group__input" type="radio" name="size" id="size_2" value="small" />
+            <label class="radio-buttons-group__btn" for="size_2">Last day</label>
+          </div>
+          <div class="row-2">
+            <input class="radio-buttons-group__input" type="radio" name="size" id="size_3" value="small" />
+            <label class="radio-buttons-group__btn" for="size_3">Per 100 000 population</label>
+
+            <input class="radio-buttons-group__input" type="radio" name="size" id="size_4" value="small" />
+            <label class="radio-buttons-group__btn" for="size_4">Last day per 100 000 population</label>
+          </div>
+         </div>
+        <!-- /.map-container__radio-buttons -->
+      </div>
+       <!-- /.wrapper -->
+    </div>
+    <!-- /.map -->
      <div class="countries-table">
        <div class="countries-table__wrapper wrapper">
         <table class="table table-bordered table-sortable" id="dataTable" width="100%" cellspacing="0">
@@ -51,7 +58,7 @@
                   <th class="countries-table__column">Total Deaths</th>
                   <th class="countries-table__column">Total Recovered</th>
                   <th class="countries-table__column">Flag</th>
-                  <th class="countries-table__column asc">Country</th>
+                  <th data-sortable="true" class="countries-table__column" sort="asc">Country</th>
               </tr>
           </thead>
           <tbody class="countries-table__body">
@@ -108,54 +115,54 @@
               <input type="text" class="data-target" value="All world">
           </div>
         </div>
-        <table class="common-tables_last_day common-table">
+        <table class="common-table">
           <caption class="common-table__title">Number of cases in the last day</caption>
           <thead>
             <tr>
-              <th class="cases" scope="col">Cases</th>
-              <th class="deaths" scope="col">Deaths</th>
-              <th class="recovered" scope="col">Recovered</th>
+              <th class="th-elem" scope="col">Cases</th>
+              <th class="th-elem" scope="col">Deaths</th>
+              <th class="th-elem" scope="col">Recovered</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="cases_value" data-label="cases">10</td>
-              <td class="deaths_value" data-label="deaths">0</td>
-              <td class="recovered_value" data-label="recovered">10</td>
+              <td class="td-elem" data-label="cases">10</td>
+              <td class="td-elem" data-label="deaths">0</td>
+              <td class="td-elem" data-label="recovered">10</td>
             </tr>
           </tbody>
         </table>
-        <table class="common-tables__per_100 common-table">
+        <table class="common-table">
           <caption class="common-table__title">The total number of cases per 100 thousand population</caption>
           <thead>
             <tr>
-              <th class="cases" scope="col">Cases</th>
-              <th class="deaths" scope="col">Deaths</th>
-              <th class="recovered" scope="col">Recovered</th>
+              <th class="th-elem" scope="col">Cases</th>
+              <th class="th-elem" scope="col">Deaths</th>
+              <th class="th-elem" scope="col">Recovered</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="cases_value" data-label="cases">10</td>
-              <td class="deaths_value" data-label="deaths">0</td>
-              <td class="recovered_value" data-label="recovered">10</td>
+              <td class="td-elem" data-label="cases">10</td>
+              <td class="td-elem" data-label="deaths">0</td>
+              <td class="td-elem" data-label="recovered">10</td>
             </tr>
           </tbody>
         </table>
-        <table class="common-tables__last_day_per_100 common-table">
+        <table class="common-table">
           <caption class="common-table__title">The total number of cases in the last day per 100 thousand population</caption>
           <thead>
             <tr>
-              <th class="cases" scope="col">Cases</th>
-              <th class="deaths" scope="col">Deaths</th>
-              <th class="recovered" scope="col">Recovered</th>
+              <th class="th-elem" scope="col">Cases</th>
+              <th class="th-elem" scope="col">Deaths</th>
+              <th class="th-elem" scope="col">Recovered</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td class="cases_value" data-label="cases">10</td>
-              <td class="deaths_value" data-label="deaths">0</td>
-              <td class="recovered_value" data-label="recovered">10</td>
+              <td class="td-elem" data-label="cases">10</td>
+              <td class="td-elem" data-label="deaths">0</td>
+              <td class="td-elem" data-label="recovered">10</td>
             </tr>
           </tbody>
         </table>
