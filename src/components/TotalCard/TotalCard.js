@@ -1,5 +1,5 @@
 import utils from '../../Utils';
-import worldParameters from './constants';
+import * as constants from '../../constants/constants';
 
 export default class TotalCard {
   constructor(item, type) {
@@ -11,8 +11,11 @@ export default class TotalCard {
   }
 
   async initCount(type) {
-    const countData = await utils.fetchWorld({ yesterday: false }, worldParameters.all);
-    this.count = countData[type];
+    const url = constants.apiUrls.worldometers;
+    const urlParameter = constants.worldParameters.all;
+    const countData = await utils.fetchData(url, { yesterday: false }, urlParameter);
+
+    this.count = countData[type].toLocaleString();
     this.renderCount();
   }
 

@@ -40,8 +40,8 @@ const initFetch = async (baseUrl, body) => {
   return totalData;
 };
 
-export const fetchWorld = async (body, entry = '') => {
-  const baseUrl = `https://disease.sh/v3/covid-19/${entry}`;
+export const fetchData = async (url, body, entry = '') => {
+  const baseUrl = `${url}${entry}`;
   const data = await initFetch(baseUrl, body);
 
   return data;
