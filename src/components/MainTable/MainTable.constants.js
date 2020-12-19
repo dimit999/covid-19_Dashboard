@@ -1,13 +1,5 @@
-export const totalsTypes = ['cases', 'deaths', 'recovered'];
+export const totalsTypes = ['cases', 'deaths', 'recovered', 'flag', 'country'];
 export const todayTypes = ['todayCases', 'todayDeaths', 'todayRecovered'];
-export const totalsTypesTable = ['cases', 'deaths', 'recovered', 'flag', 'country'];
-export const totalsTypesTableTitles = ['Total cases', 'Total deaths', 'Total recovered', 'Flag', 'Country'];
-
-export const MaintableData = {
-  titles: totalsTypesTableTitles,
-  types: totalsTypesTable,
-  sort: { sort: 'cases' },
-};
 
 export const conditionalValues = [
   {
