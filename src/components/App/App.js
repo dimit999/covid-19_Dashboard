@@ -11,6 +11,8 @@ export default class App {
     this.totalListing = utils.listing(TotalListing, constants.totalsTypes);
     this.ConditionalListing = utils.listing(ConditionalListing, constants.conditionalValues);
     this.mainTable = new MainTable(constants.MaintableData);
+    this.countryInput = document.querySelector('.common-tables__country-title input');
+    this.currentCountry = null;
   }
 
   init() {
@@ -23,12 +25,14 @@ export default class App {
   }
 
   /* events() {
-    // тут будут отслеживаться dom евенты
-  }
+    this.countryInput.addEventListener('change', () => {
+      let val = this.countryInput.value;
+    });
+  } */
 
-  stateListener() {
+  /* stateListener() {
     // state менеджер, будет следить за изменениями объектов
-    /* observer.subscribe((data) => {
+     observer.subscribe((data) => {
 
     });
   } */

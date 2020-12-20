@@ -1,14 +1,12 @@
-import utils from '../../Utils';
-import * as constants from '../../constants/constants';
-
 export default class ConditionalCard {
-  constructor(item, data) {
+  constructor(item, data, countData) {
     this.item = item;
     this.data = data;
-    this.countsData = null;
+    this.countsData = countData;
     this.countElems = null;
+    console.log(this.countsData);
     this.getCountElems();
-    this.initCount();
+    this.renderCount();
   }
 
   getCountElems() {
@@ -20,18 +18,9 @@ export default class ConditionalCard {
     }, {});
   }
 
-  async initCount() {
-    const url = constants.apiUrls.worldometers;
-    const urlParameter = constants.worldParameters.all;
-    const countData = await utils.fetchData(url, this.data.params, urlParameter);
-
-    this.countsData = countData;
-    this.renderCount();
-  }
-
   renderCount() {
     this.data.types.forEach((type, idx) => {
-      let count = this.countsData[type].toLocaleString();
+      let count = this.countsData[type].toLocaleString('ru-RU');
 
       if (this.data.populationCondition) {
         count = Math.ceil((this.countsData[type] / this.countsData.population) * 100000);

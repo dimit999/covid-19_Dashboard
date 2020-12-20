@@ -5,13 +5,28 @@ import * as tableUtils from './MainTable.utils';
 export default class MainTable {
   constructor(data) {
     this.data = data;
+    this.country = null;
     this.countsData = null;
     this.countElems = null;
+    this.tableData = null;
     this.wrapper = document.querySelector('.countries-table');
     this.tbody = null;
     this.thead = null;
     this.table = null;
+    this.search = null;
     this.initCount();
+  }
+
+  events() {
+    this.tbody.addEventListener('click', ({ target }) => {
+      if (target.classList.contains('country-btn')) {
+        const event = new Event('keyup');
+
+        this.country = target.textContent;
+        this.search.value = this.country;
+        this.search.dispatchEvent(event);
+      }
+    });
   }
 
   render() {
@@ -23,6 +38,7 @@ export default class MainTable {
 
   renderHead() {
     const th = this.data.titles.map((type) => tableUtils.getTh(type));
+
     this.thead.innerHTML = `${th.join(' ')}`;
   }
 
@@ -41,8 +57,8 @@ export default class MainTable {
     const countData = await utils.fetchData(url, this.data.sort, urlParameter);
 
     this.countsData = countData;
-    console.log(countData);
     this.renderCount();
+    this.events();
   }
 
   renderCount() {
@@ -61,6 +77,8 @@ export default class MainTable {
       tr.append(flagElem);
       tr.append(countryBtn);
     });
-    this.table = new window.DataTable('#dataTable');
+
+    this.tableData = new window.DataTable('#dataTable');
+    this.search = this.wrapper.querySelector('.dataTable-search input');
   }
 }

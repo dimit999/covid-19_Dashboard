@@ -1,5 +1,7 @@
 import getChunk from './TotalListing.utils';
 import TotalCard from '../TotalCard';
+import utils from '../../Utils';
+import * as constants from '../../constants/constants';
 
 export default class TotalListing {
   constructor(types) {
@@ -10,11 +12,20 @@ export default class TotalListing {
 
   initCards(cards) {
     cards.forEach((card, idx) => {
-      this.cards[idx] = new TotalCard(card, this.types[idx]);
+      this.cards[idx] = new TotalCard(card, this.types[idx], this.countData);
     });
   }
 
-  render() {
+  async initCount() {
+    const url = constants.apiUrls.worldometers;
+    const urlParameter = constants.worldParameters.all;
+    const countData = await utils.fetchData(url, { yesterday: false }, urlParameter);
+
+    this.countData = countData;
+  }
+
+  async render() {
+    await this.initCount();
     let cards = null;
     const cardsTemplates = this.types.map((name) => getChunk(name));
 
