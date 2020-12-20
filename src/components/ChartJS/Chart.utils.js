@@ -1,6 +1,7 @@
 /* Chart parameters */
 const chart = document.getElementById('chart').getContext('2d');
 const radioBtns = document.querySelectorAll('.radio-buttons-group__btn');
+const daysRadioBtn = document.querySelector('.days');
 
 const gradientRecovered = chart.createLinearGradient(0, 0, 0, 450);
 const gradientCases = chart.createLinearGradient(0, 0, 0, 650);
@@ -84,7 +85,7 @@ const barOptions = {
 };
 
 /* Get chart data */
-function getLineChartData(cases, recovered, deaths, xData) {
+function getLineChartData(cases, deaths, recovered, xData) {
   const data = {
     labels: xData,
     datasets: [{
@@ -96,38 +97,38 @@ function getLineChartData(cases, recovered, deaths, xData) {
       data: cases,
     },
     {
-      label: 'Recovered',
-      backgroundColor: gradientRecovered,
-      pointBackgroundColor: 'rgba(0, 189, 85, 0.5)',
-      borderWidth: 1,
-      borderColor: '#911215',
-      data: recovered,
-    },
-    {
       label: 'Deaths',
       backgroundColor: gradientDeaths,
       pointBackgroundColor: 'rgba(255, 0, 0, 3)',
       borderWidth: 1,
       borderColor: '#911215',
       data: deaths,
+    },
+    {
+      label: 'Recovered',
+      backgroundColor: gradientRecovered,
+      pointBackgroundColor: 'rgba(0, 189, 85, 0.5)',
+      borderWidth: 1,
+      borderColor: '#911215',
+      data: recovered,
     }],
   };
   return data;
 }
 
-function getPieChartData(cases, recovered, deaths) {
+function getPieChartData(cases, deaths, recovered) {
   const data = {
-    labels: ['Recovered', 'Cases', 'Deaths'],
+    labels: ['Cases', 'Deaths', 'Recovered'],
     datasets: [{
-      data: [cases, recovered, deaths],
+      data: [cases, deaths, recovered],
       backgroundColor: [
-        'rgba(0, 189, 85, 0.5)',
         'rgba(92, 0, 167, 0.5)',
-        'rgba(255, 0, 0, 3)'],
+        'rgba(255, 0, 0, 3)',
+        'rgba(0, 189, 85, 0.5)'],
       borderColor: [
         'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
         'rgba(255, 206, 86, 1)',
+        'rgba(54, 162, 235, 1)',
       ],
       borderWidth: 1,
     }],
@@ -136,11 +137,11 @@ function getPieChartData(cases, recovered, deaths) {
   return data;
 }
 
-function getBarChartData(cases, recovered, deaths) {
+function getBarChartData(cases, deaths, recovered) {
   const data = {
-    labels: ['Cases', 'Recovered', 'Deaths'],
+    labels: ['Cases', 'Deaths', 'Recovered'],
     datasets: [{
-      data: [cases, recovered, deaths],
+      data: [cases, deaths, recovered],
       fill: false,
       backgroundColor: [
         'rgba(0, 189, 85, 0.5)',
@@ -158,6 +159,6 @@ function getBarChartData(cases, recovered, deaths) {
 }
 
 export {
-  chart, lineOptions, barOptions, radioBtns,
+  chart, lineOptions, barOptions, radioBtns, daysRadioBtn,
   getLineChartData, getPieChartData, getBarChartData,
 };
