@@ -21,21 +21,55 @@ export default class MainTable {
   events() {
     this.tbody.addEventListener('click', ({ target }) => {
       if (target.classList.contains('country-btn')) {
-        const event = new Event('keyup');
-
         this.country = target.textContent;
-        this.search.value = this.country;
-        this.search.dispatchEvent(event);
-
-        statObserver.broadcast({ country: this.country });
+        this.setSearchValue(this.country);
+        this.stateSend();
       }
+    });
+
+    this.search.addEventListener('input', async () => {
+      if (this.timer !== undefined) {
+        clearInterval(this.timer);
+      }
+
+      this.timer = await setTimeout(() => {
+        let pass = false;
+        let word = null;
+
+        if (this.search.value.length > 2) {
+          word = this.checkCountry(this.search.value);
+        }
+
+        if (word) {
+          pass = true;
+          this.country = word;
+        }
+
+        if (!pass && this.tbody.querySelectorAll('tr').length === 1) {
+          this.country = this.tbody.querySelector('tr').getAttribute('data-country');
+        }
+
+        if (this.search.value.length === 0) {
+          this.country = '';
+        }
+
+        this.stateSend();
+      }, 500);
     });
   }
 
-  resetCountry() {
+  stateSend() {
+    statObserver.broadcast({ country: this.country });
+  }
+
+  checkCountry(value) {
+    return tableUtils.checkCountry(this.countsData, value);
+  }
+
+  setSearchValue(value) {
     const event = new Event('keyup');
 
-    this.search.value = '';
+    this.search.value = value;
     this.search.dispatchEvent(event);
   }
 
@@ -81,6 +115,7 @@ export default class MainTable {
       const countryBtn = tableUtils.getElement('td', `<button class="country-btn">${data.country}</button>`);
 
       this.tbody.append(tr);
+      tr.setAttribute('data-country', data.country);
       tr.append(caseElem);
       tr.append(deathsElem);
       tr.append(recoveredsElem);

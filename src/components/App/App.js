@@ -28,16 +28,23 @@ export default class App {
   }
 
   updateCountryInput() {
-    this.countryInput.value = this.currentCountry;
+    let title = this.currentCountry;
+
+    if (this.currentCountry === '') {
+      title = constants.config.defaultCountryTitle;
+    }
+
+    this.countryInput.value = title;
   }
 
   events() {
     this.countryResetBtn.addEventListener('click', () => {
       this.currentCountry = '';
-      this.countryInput.value = constants.config.defaultCountryTitle;
+      this.updateCountryInput();
       this.ConditionalListing.update(this.currentCountry);
       this.mainTable.resetCountry();
       this.ChartJS.renderDefaultTotalChart();
+      this.mainTable.setSearchValue(this.currentCountry);
     });
   }
 
