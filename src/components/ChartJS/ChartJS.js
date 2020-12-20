@@ -1,7 +1,7 @@
 import Chart from 'chart.js';
 import {
-  chart, getLineChartOptions, barOptions, radioBtns, daysRadioBtn,
-  getLineChartData, getPieChartData, getBarChartData,
+  chart, getLineChartOptions, radioBtns, daysRadioBtn,
+  getLineChartData, getPieChartData,
 } from './Chart.utils';
 import utils from '../../Utils';
 import * as constants from '../../constants/constants';
@@ -135,17 +135,6 @@ export default class ChartJS {
           text: `Statistic for ${this.region}`,
         },
       },
-    });
-    window.chartInstance.update();
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  chartBarWidget(cases, deaths, recovered) {
-    if (window.chartInstance) window.chartInstance.destroy();
-    window.chartInstance = new Chart(chart, {
-      type: 'bar',
-      data: getBarChartData(cases, deaths, recovered),
-      options: barOptions,
     });
     window.chartInstance.update();
   }

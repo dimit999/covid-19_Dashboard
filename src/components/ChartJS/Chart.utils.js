@@ -70,27 +70,6 @@ function getLineChartOptions(region) {
   return lineOptions;
 }
 
-const barOptions = {
-  responsive: true,
-  scales: {
-    xAxes: [{
-      ticks: {
-        maxRotation: 10,
-        minRotation: 0,
-      },
-      gridLines: {
-        offsetGridLines: true,
-      },
-    },
-    ],
-    yAxes: [{
-      ticks: {
-        beginAtZero: true,
-      },
-    }],
-  },
-};
-
 /* Get chart data */
 function getLineChartData(cases, deaths, recovered, xData) {
   const data = {
@@ -145,28 +124,7 @@ function getPieChartData(cases, deaths, recovered) {
   return data;
 }
 
-function getBarChartData(cases, deaths, recovered) {
-  const data = {
-    labels: ['Cases', 'Deaths', 'Recovered'],
-    datasets: [{
-      data: [cases, deaths, recovered],
-      fill: false,
-      backgroundColor: [
-        'rgba(0, 189, 85, 0.5)',
-        'rgba(92, 0, 167, 0.5)',
-        'rgba(255, 0, 0, 3)'],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-      ],
-      borderWidth: 1,
-    }],
-  };
-  return data;
-}
-
 export {
-  chart, getLineChartOptions, barOptions, radioBtns, daysRadioBtn,
-  getLineChartData, getPieChartData, getBarChartData,
+  chart, getLineChartOptions, radioBtns, daysRadioBtn,
+  getLineChartData, getPieChartData,
 };
