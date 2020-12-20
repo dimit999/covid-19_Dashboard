@@ -2,6 +2,7 @@ export const worldParameters = {
   all: 'all',
   continents: 'continents',
   countries: 'countries',
+  country: 'country',
 };
 
 export const worldDaysParameters = {
