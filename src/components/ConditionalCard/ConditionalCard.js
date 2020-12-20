@@ -19,7 +19,6 @@ export default class ConditionalCard {
 
   update(data) {
     this.countsData = data;
-    console.log(this.countsData);
     this.renderCount();
   }
 
