@@ -4,7 +4,12 @@ export const worldParameters = {
   countries: 'countries',
 };
 
+export const worldDaysParameters = {
+  historical: 'historical',
+  historicalAll: 'historical/all',
+};
+
 export const apiUrls = {
   worldometers: 'https://disease.sh/v3/covid-19/',
-  jhucsse: 'https://disease.sh/v3/covid-19/jhucsse/',
+  jhucsse: 'https://disease.sh/v3/covid-19/',
 };

@@ -25,7 +25,6 @@
   }
 }
 
-
 /* Radio-buttons */
  .radio-buttons-group {
   &__btn {
@@ -39,6 +38,7 @@
     text-align: center;
     cursor: pointer;
     background-color: $color-blue-light;
+    border: 1px solid $color-border;
     color: white;
     padding: 5px 10px;
     border-radius: 6px;
@@ -53,11 +53,11 @@
   }
  }
 
- .row-1 {
+ .row-1, .row-2 {
    margin-bottom: 20px;
  }
 
- .row-1, .row-2 {
+ .row-1, .row-2, .row-3 {
   display: flex;
  }
 
@@ -70,11 +70,13 @@
  input[type="radio"]:checked + label {
    background-color: $color-blue-dark;
    color: $color-white;
+   border: 1px solid $color-border;
    @include text-shadow;
  }
 
  input[type="radio"]:hover:not(:checked) + label {
   background-color: $color-blue-middle;
+  border: 1px solid $color-border;
   color: $color-white;
   @include text-shadow;
  }

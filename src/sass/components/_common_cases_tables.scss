@@ -1,3 +1,16 @@
+@keyframes reload {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	50% {
+		transform: rotate(-180deg);
+	}
+
+	100% {
+		transform: rotate(-360deg);
+	}
+}
 
 .common-tables {
   padding: 20px 20px;
@@ -117,4 +130,34 @@
 
 .td-elem {
   background-color: $color-background-bottom-elem;
+}
+
+.reset-btn {
+  width: 26px;
+  height: 26px;
+  margin-left: 10px;
+  padding: 0;
+  border: none;
+  border: 1px solid $color-purple-light;
+  border-radius: 50%;
+  background-color: $color-background-bottom-elem;
+  background: {
+    position: center;
+    size: 12px;
+    repeat: no-repeat;
+    image: url('../assets/images/svg/circle.svg');
+  }
+
+  &:focus {
+    outline: none;
+    background-color: $color-background-top-elem;
+    animation-name: reload;
+    animation-timing-function: ease;
+    animation-duration: 1s;
+  }
+
+  &:hover {
+    outline: none;
+    background-color: $color-background-top-elem;
+  }
 }
