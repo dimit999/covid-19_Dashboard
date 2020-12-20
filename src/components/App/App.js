@@ -42,7 +42,7 @@ export default class App {
       this.currentCountry = '';
       this.updateCountryInput();
       this.ConditionalListing.update(this.currentCountry);
-      this.ChartJS.renderDefaultTotalChart();
+      this.ChartJS.update(this.currentCountry);
       this.mainTable.setSearchValue(this.currentCountry);
     });
   }

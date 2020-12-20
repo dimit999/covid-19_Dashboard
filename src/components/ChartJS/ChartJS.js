@@ -155,11 +155,13 @@ export default class ChartJS {
             this.chartPieWidget(element.todayCases,
               element.todayDeaths, element.todayRecovered);
           } else if (target.innerText.includes('Per 100')) {
-            this.chartPieWidget(element.casesPerOneMillion,
-              element.deathsPerOneMillion, element.recoveredPerOneMillion);
+            this.chartPieWidget(Math.ceil((element.cases / element.population) * 100000),
+              Math.ceil((element.deaths / element.population) * 100000),
+              Math.ceil((element.recovered / element.population) * 100000));
           } else if (target.innerText.includes('Last day per 100')) {
-            this.chartPieWidget(element.oneCasePerPeople,
-              element.oneDeathPerPeople, element.oneTestPerPeople);
+            this.chartPieWidget(Math.ceil((element.todayCases / element.population) * 100000),
+              Math.ceil((element.todayDeaths / element.population) * 100000),
+              Math.ceil((element.todayRecovered / element.population) * 100000));
           }
         }
       });
