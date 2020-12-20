@@ -1,6 +1,6 @@
 import Chart from 'chart.js';
 import {
-  chart, lineOptions, barOptions, radioBtns, daysRadioBtn,
+  chart, getLineChartOptions, barOptions, radioBtns, daysRadioBtn,
   getLineChartData, getPieChartData, getBarChartData,
 } from './Chart.utils';
 import utils from '../../Utils';
@@ -32,6 +32,7 @@ export default class ChartJS {
     this.initDaysCountTotal();
     this.initDaysCountTotalByCountries();
     this.addRadioBtnsEvent();
+    this.region = null;
   }
 
   async update(country) {
@@ -93,6 +94,7 @@ export default class ChartJS {
 
   /* Render Chart */
   renderDefaultTotalChart() {
+    this.region = this.selectedCountry || 'All World';
     this.getRadioBtnsDefaultBg();
     if (this.selectedCountry) {
       this.daysTotalCountriesData.forEach((element) => {
@@ -115,7 +117,7 @@ export default class ChartJS {
       data: getLineChartData(Object.values(cases),
         Object.values(deaths),
         Object.values(recovered), xData),
-      lineOptions,
+      options: getLineChartOptions(this.region),
     });
     window.chartInstance.update();
   }
@@ -128,6 +130,10 @@ export default class ChartJS {
       data: getPieChartData(cases, deaths, recovered),
       options: {
         responsive: true,
+        title: {
+          display: true,
+          text: `Statistic for ${this.region}`,
+        },
       },
     });
     window.chartInstance.update();

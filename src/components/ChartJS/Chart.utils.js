@@ -20,48 +20,55 @@ gradientDeaths.addColorStop(0.5, 'rgba(255, 0, 0, 5.5)');
 gradientDeaths.addColorStop(1, 'rgba(255, 0, 0, 3)');
 
 /* Chart options */
-const lineOptions = {
-  responsive: true,
-  maintainAspectRatio: true,
-  animation: {
-    easing: 'easeInOutQuad',
-    duration: 520,
-  },
-  scales: {
-    xAxes: [{
-      gridLines: {
-        color: 'rgba(200, 200, 200, 0.05)',
-        lineWidth: 1,
-      },
-    }],
-    yAxes: [{
-      gridLines: {
-        color: 'rgba(200, 200, 200, 0.08)',
-        lineWidth: 1,
-      },
-    }],
-  },
-  elements: {
-    line: {
-      tension: 0.4,
+function getLineChartOptions(region) {
+  const lineOptions = {
+    responsive: true,
+    maintainAspectRatio: true,
+    title: {
+      display: true,
+      text: `Statistic for ${region}`,
     },
-  },
-  legend: {
-    display: true,
-  },
-  point: {
-    backgroundColor: 'white',
-  },
-  tooltips: {
-    titleFontFamily: 'Open Sans',
-    backgroundColor: 'rgba(0,0,4,0.3)',
-    titleFontColor: 'red',
-    caretSize: 5,
-    cornerRadius: 2,
-    xPadding: 10,
-    yPadding: 10,
-  },
-};
+    animation: {
+      easing: 'easeInOutQuad',
+      duration: 520,
+    },
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'rgba(200, 200, 200, 0.05)',
+          lineWidth: 1,
+        },
+      }],
+      yAxes: [{
+        gridLines: {
+          color: 'rgba(200, 200, 200, 0.08)',
+          lineWidth: 1,
+        },
+      }],
+    },
+    elements: {
+      line: {
+        tension: 0.4,
+      },
+    },
+    legend: {
+      display: true,
+    },
+    point: {
+      backgroundColor: 'white',
+    },
+    tooltips: {
+      titleFontFamily: 'Open Sans',
+      backgroundColor: 'rgba(0,0,4,0.3)',
+      titleFontColor: 'red',
+      caretSize: 5,
+      cornerRadius: 2,
+      xPadding: 10,
+      yPadding: 10,
+    },
+  };
+  return lineOptions;
+}
 
 const barOptions = {
   responsive: true,
@@ -120,6 +127,7 @@ function getPieChartData(cases, deaths, recovered) {
   const data = {
     labels: ['Cases', 'Deaths', 'Recovered'],
     datasets: [{
+      label: 'TEST',
       data: [cases, deaths, recovered],
       backgroundColor: [
         'rgba(92, 0, 167, 0.5)',
@@ -159,6 +167,6 @@ function getBarChartData(cases, deaths, recovered) {
 }
 
 export {
-  chart, lineOptions, barOptions, radioBtns, daysRadioBtn,
+  chart, getLineChartOptions, barOptions, radioBtns, daysRadioBtn,
   getLineChartData, getPieChartData, getBarChartData,
 };
