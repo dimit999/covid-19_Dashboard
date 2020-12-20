@@ -2,3 +2,71 @@
   width: 100%;
   height: 600px
 }
+
+#map {
+  width: 100%;
+  height: 500px;
+  &.leaflet {
+    &-container {
+      background-color: $color-map-lightgray;
+    }
+  }
+  .leaflet {
+    &-control-zoom {
+      &-in {
+        background-color: $color-map-red;
+        border-color: $color-text-shadow;
+        border-radius: 0;
+      }
+      &-out {
+        background-color: $color-map-red;
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+.map {
+  &-popup {
+
+    &--span {
+      display: block;
+      margin-bottom: 5px !important;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &-green {
+        color: $color-map-green;
+      }
+
+      &-red {
+        color: $color-map-red;
+      }
+
+      &-purple {
+        color: $color-purple-light;
+      }
+    }
+
+    .leaflet {
+
+      &-popup {
+
+        &-tip {
+          background-color: $color-map-lightgray;
+        }
+
+        &-content {
+
+          &-wrapper {
+            border-radius: 0;
+            border: 2px solid $color-map-lightgray;
+            background-color: $color-map-darkkray;
+          }
+        }
+      }
+    }
+  }
+}

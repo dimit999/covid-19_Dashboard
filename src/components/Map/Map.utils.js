@@ -24,9 +24,9 @@ export const addResources = async () => {
 export const getPopupChunk = (data) => {
   const chunk = `
     <b>${data.country}:</b><br>
-    <span>cases: ${data.cases}</span><br>
-    <span>deaths: ${data.deaths}</span><br>
-    <span>recovered: ${data.recovered}</span>
+    <span class="map-popup--span-green">cases: ${data.cases}</span><br>
+    <span class="map-popup--span-red">deaths: ${data.deaths}</span><br>
+    <span class="map-popup--span-purple">recovered: ${data.recovered}</span>
   `;
 
   return chunk;
@@ -59,8 +59,28 @@ export const setMarkers = (map, data) => {
     const marker = new window.L.Marker([lat, long], markOptions);
     const popup = getPopupChunk(data[item]);
 
-    marker.bindPopup(popup).openPopup();
+    marker.bindPopup(popup, { className: 'map-popup' }).openPopup();
     marker.on('click', markerOnClick);
     marker.addTo(map);
   });
+};
+
+export const checkCountry = (data, value) => {
+  const coord = [];
+  Object.keys(data).some((idx) => {
+    if (value.trim().toLowerCase() === data[idx].country.toLowerCase()) {
+      coord.push(data[idx].countryInfo.lat);
+      coord.push(data[idx].countryInfo.long);
+      return true;
+    }
+    return false;
+  });
+
+  return coord;
+};
+
+export const changeCoordMap = (map, coords) => {
+  map.panTo(coords);
+  map.setZoom(4);
+  return true;
 };

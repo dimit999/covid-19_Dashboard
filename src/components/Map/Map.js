@@ -14,6 +14,16 @@ export default class MainMap {
     this.map = mapUtils.buildMap(constants.mapOptions);
   }
 
+  updateCoord(city) {
+    let coords = constants.mapOptions.center;
+
+    if (city) {
+      coords = mapUtils.checkCountry(this.data, city);
+    }
+
+    mapUtils.changeCoordMap(this.map, coords);
+  }
+
   setMarkers() {
     mapUtils.setMarkers(this.map, this.data);
   }

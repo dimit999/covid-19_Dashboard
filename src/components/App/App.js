@@ -47,6 +47,7 @@ export default class App {
       this.ConditionalListing.update(this.currentCountry);
       this.ChartJS.renderDefaultTotalChart();
       this.mainTable.setSearchValue(this.currentCountry);
+      this.mainMap.updateCoord(this.currentCountry);
     });
   }
 
@@ -58,6 +59,7 @@ export default class App {
         this.mainTable.setSearchValue(data.country);
         this.ConditionalListing.update(this.currentCountry);
         this.ChartJS.update(this.currentCountry);
+        this.mainMap.updateCoord(this.currentCountry);
       }
     });
   }
