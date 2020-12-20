@@ -91,4 +91,46 @@
   @include text-shadow;
  }
 
+ .full-screen svg {
+  width: 12px;
+  height: 12px;
+}
+
+.full-screen {
+  background-color: Transparent;
+  cursor:pointer;
+  overflow: hidden;
+  position: relative;
+  top: 100px;
+  z-index: 1;
+  outline: none !important;
+  border: none !important;
+  @include media-laptop {
+    left: 300px;
+  }
+
+  @include media-tablet {
+    left: 300px;
+  }
+
+  @include media-mobileMiddle {
+    left: 200px;
+  }
+
+  @include media-preMobileSmall {
+    left: 200px;
+  }
+
+  &:before {
+    content: '';
+    width: 20px;
+    float: left;
+    margin-right: 5px;
+    margin-top: -2px;
+  }
+
+  &:hover {
+    filter: invert(0.2) sepia(1) hue-rotate(200deg);
+  }
+}
 

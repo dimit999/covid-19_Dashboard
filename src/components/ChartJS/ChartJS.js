@@ -1,6 +1,6 @@
 import Chart from 'chart.js';
 import {
-  chart, getLineChartOptions, radioBtns, daysRadioBtn,
+  chart, getLineChartOptions, radioBtns,
   getLineChartData, getPieChartData,
 } from './Chart.utils';
 import utils from '../../Utils';
@@ -8,7 +8,6 @@ import * as constants from '../../constants/constants';
 
 export default class ChartJS {
   constructor() {
-    this.daysRadioBtn = daysRadioBtn;
     this.allRecovered = null;
     this.allCases = null;
     this.allDeaths = null;

@@ -1,7 +1,10 @@
+import utils from '../../Utils';
+
 /* Chart parameters */
 const chart = document.getElementById('chart').getContext('2d');
 const radioBtns = document.querySelectorAll('.radio-buttons-group__btn');
 const daysRadioBtn = document.querySelector('.days');
+const lineChartSection = document.querySelector('.line-chart');
 
 const gradientRecovered = chart.createLinearGradient(0, 0, 0, 450);
 const gradientCases = chart.createLinearGradient(0, 0, 0, 650);
@@ -124,7 +127,13 @@ function getPieChartData(cases, deaths, recovered) {
   return data;
 }
 
+function fullScreenBtnEvent() {
+  document.querySelector('.full-screen').addEventListener('click', () => { utils.openFullscreen(lineChartSection); });
+}
+
+fullScreenBtnEvent();
+
 export {
-  chart, getLineChartOptions, radioBtns, daysRadioBtn,
+  chart, getLineChartOptions, radioBtns,
   getLineChartData, getPieChartData,
 };
