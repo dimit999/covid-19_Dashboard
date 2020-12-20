@@ -24,8 +24,8 @@ export const listing = (AnyClass, data = {}) => {
       category.render();
     },
 
-    update() {
-      category.update();
+    update(parameter = '') {
+      category.update(parameter);
     },
   };
 

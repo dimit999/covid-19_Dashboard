@@ -4,7 +4,6 @@ export default class ConditionalCard {
     this.data = data;
     this.countsData = countData;
     this.countElems = null;
-    console.log(this.countsData);
     this.getCountElems();
     this.renderCount();
   }
@@ -18,10 +17,15 @@ export default class ConditionalCard {
     }, {});
   }
 
+  update(data) {
+    this.countsData = data;
+    console.log(this.countsData);
+    this.renderCount();
+  }
+
   renderCount() {
     this.data.types.forEach((type, idx) => {
       let count = this.countsData[type].toLocaleString('ru-RU');
-
       if (this.data.populationCondition) {
         count = Math.ceil((this.countsData[type] / this.countsData.population) * 100000);
       }

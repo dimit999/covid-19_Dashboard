@@ -1,6 +1,7 @@
 import utils from '../../Utils';
 import * as constants from '../../constants/constants';
 import * as tableUtils from './MainTable.utils';
+import statObserver from '../Observer';
 
 export default class MainTable {
   constructor(data) {
@@ -25,6 +26,8 @@ export default class MainTable {
         this.country = target.textContent;
         this.search.value = this.country;
         this.search.dispatchEvent(event);
+
+        statObserver.broadcast({ country: this.country });
       }
     });
   }

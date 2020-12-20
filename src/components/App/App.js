@@ -5,6 +5,7 @@ import * as constants from './constants';
 import TotalListing from '../TotalListing';
 import ConditionalListing from '../ConditionalListing';
 import MainTable from '../MainTable';
+import statObserver from '../Observer';
 
 export default class App {
   constructor() {
@@ -16,12 +17,14 @@ export default class App {
   }
 
   init() {
-    // запуск
     this.totalListing.render();
     this.ConditionalListing.render();
     this.mainTable.render();
-    // this.stateListener();
-    // this.events();
+    this.stateListener();
+  }
+
+  updateCountryInput() {
+    this.countryInput.value = this.currentCountry;
   }
 
   /* events() {
@@ -30,10 +33,13 @@ export default class App {
     });
   } */
 
-  /* stateListener() {
-    // state менеджер, будет следить за изменениями объектов
-     observer.subscribe((data) => {
-
+  stateListener() {
+    statObserver.subscribe((data) => {
+      if ('country' in data) {
+        this.currentCountry = data.country;
+        this.updateCountryInput();
+        this.ConditionalListing.update(this.currentCountry);
+      }
     });
-  } */
+  }
 }
