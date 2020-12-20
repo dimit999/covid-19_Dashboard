@@ -1,6 +1,6 @@
 import Chart from 'chart.js';
 import {
-  chart, lineOptions, barOptions, radioBtns,
+  chart, lineOptions, barOptions, radioBtns, daysRadioBtn,
   getLineChartData, getPieChartData, getBarChartData,
 } from './Chart.utils';
 import utils from '../../Utils';
@@ -8,6 +8,7 @@ import * as constants from '../../constants/constants';
 
 export default class ChartJS {
   constructor() {
+    this.daysRadioBtn = daysRadioBtn;
     this.allRecovered = null;
     this.allCases = null;
     this.allDeaths = null;
@@ -25,11 +26,22 @@ export default class ChartJS {
     this.daysTotalDeaths = null;
     this.daysTotalCountriesData = null;
     this.commonTotalCountriesData = null;
+    this.selectedCountry = null;
     this.initTotalCount();
     this.initTotalCountByCountries();
     this.initDaysCountTotal();
     this.initDaysCountTotalByCountries();
     this.addRadioBtnsEvent();
+  }
+
+  async update(country) {
+    if (country) {
+      this.selectedCountry = country;
+      this.renderDefaultTotalChart();
+    } else {
+      this.selectedCountry = null;
+      this.renderDefaultTotalChart();
+    }
   }
 
   async initTotalCount() {
@@ -39,7 +51,6 @@ export default class ChartJS {
     const {
       recovered, cases, deaths,
       todayRecovered, todayCases, todayDeaths,
-      recoveredPerOneMillion, casesPerOneMillion, deathsPerOneMillion,
       population,
     } = totalData;
     this.allRecovered = recovered;
@@ -48,12 +59,12 @@ export default class ChartJS {
     this.todayRecovered = todayRecovered;
     this.todayCases = todayCases;
     this.todayDeaths = todayDeaths;
-    this.recoveredPerOneMillion = recoveredPerOneMillion;
-    this.casesPerOneMillion = casesPerOneMillion;
-    this.deathsPerOneMillion = deathsPerOneMillion;
+    this.recoveredPerOneMillion = Math.ceil((recovered / population) * 100000);
+    this.casesPerOneMillion = Math.ceil((cases / population) * 100000);
+    this.deathsPerOneMillion = Math.ceil((deaths / population) * 100000);
     this.todayRecoveredPerOneMillion = Math.ceil((todayRecovered / population) * 100000);
-    this.todayCasesPerOneMillion = Math.ceil((casesPerOneMillion / population) * 100000);
-    this.todayDeathsPerOneMillion = Math.ceil((deathsPerOneMillion / population) * 100000);
+    this.todayCasesPerOneMillion = Math.ceil((todayCases / population) * 100000);
+    this.todayDeathsPerOneMillion = Math.ceil((todayDeaths / population) * 100000);
   }
 
   async initTotalCountByCountries() {
@@ -82,38 +93,39 @@ export default class ChartJS {
 
   /* Render Chart */
   renderDefaultTotalChart() {
-    if ('USA1') {
+    this.getRadioBtnsDefaultBg();
+    if (this.selectedCountry) {
       this.daysTotalCountriesData.forEach((element) => {
-        if (element.country === 'USA') {
+        if (element.country === this.selectedCountry) {
           this.chartLineWidget(element.timeline.cases,
-            element.timeline.recovered, element.timeline.deaths);
+            element.timeline.deaths, element.timeline.recovered);
         }
       });
     } else {
-      this.chartLineWidget(this.daysTotalCases, this.daysTotalRecovered, this.daysTotalDeaths);
+      this.chartLineWidget(this.daysTotalCases, this.daysTotalDeaths, this.daysTotalRecovered);
     }
   }
 
   // eslint-disable-next-line class-methods-use-this
-  chartLineWidget(cases, recovered, deaths) {
+  chartLineWidget(cases, deaths, recovered) {
     const xData = Object.keys(cases);
     if (window.chartInstance) window.chartInstance.destroy();
     window.chartInstance = new Chart(chart, {
       type: 'line',
       data: getLineChartData(Object.values(cases),
-        Object.values(recovered),
-        Object.values(deaths), xData),
+        Object.values(deaths),
+        Object.values(recovered), xData),
       lineOptions,
     });
     window.chartInstance.update();
   }
 
   // eslint-disable-next-line class-methods-use-this
-  chartPieWidget(cases, recovered, deaths) {
+  chartPieWidget(cases, deaths, recovered) {
     if (window.chartInstance) window.chartInstance.destroy();
     window.chartInstance = new Chart(chart, {
       type: 'pie',
-      data: getPieChartData(cases, recovered, deaths),
+      data: getPieChartData(cases, deaths, recovered),
       options: {
         responsive: true,
       },
@@ -122,57 +134,88 @@ export default class ChartJS {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  chartBarWidget(cases, recovered, deaths) {
+  chartBarWidget(cases, deaths, recovered) {
     if (window.chartInstance) window.chartInstance.destroy();
     window.chartInstance = new Chart(chart, {
       type: 'bar',
-      data: getBarChartData(cases, recovered, deaths),
+      data: getBarChartData(cases, deaths, recovered),
       options: barOptions,
     });
     window.chartInstance.update();
   }
 
-  renderChart(target, commonCases, commonRecovered, commonDeaths) {
-    if (true) {
+  renderChart(target, commonCases, commonDeaths, commonRecovered) {
+    if (this.selectedCountry) {
       this.commonTotalCountriesData.forEach((element) => {
-        if (element.country === 'USA') {
+        if (element.country === this.selectedCountry) {
           if (target.innerText.includes('Total')) {
             this.chartPieWidget(element.cases,
-              element.recovered, element.deaths);
+              element.deaths, element.recovered);
           } else if (target.innerText === 'Last day') {
             this.chartPieWidget(element.todayCases,
-              element.todayRecovered, element.todayDeaths);
+              element.todayDeaths, element.todayRecovered);
           } else if (target.innerText.includes('Per 100')) {
             this.chartPieWidget(element.casesPerOneMillion,
-              element.recoveredPerOneMillion, element.deathsPerOneMillion);
+              element.deathsPerOneMillion, element.recoveredPerOneMillion);
           } else if (target.innerText.includes('Last day per 100')) {
             this.chartPieWidget(element.oneCasePerPeople,
-              element.oneTestPerPeople,
-              element.oneDeathPerPeople);
+              element.oneDeathPerPeople, element.oneTestPerPeople);
           }
         }
       });
     } else {
-      this.chartPieWidget(commonCases, commonRecovered, commonDeaths);
+      this.chartPieWidget(commonCases, commonDeaths, commonRecovered);
     }
   }
 
   /* Render Chart */
   renderCharts({ target }) {
+    this.removeClassBtn();
     if (target.innerText.includes('Days')) {
       this.renderDefaultTotalChart();
+      this.getRadioBtnsDefaultBg();
     } else if (target.innerText.includes('Total')) {
-      this.renderChart(target, this.allCases, this.allRecovered, this.allDeaths);
+      this.renderChart(target, this.allCases, this.allDeaths, this.allRecovered);
+      this.addSelectedClassBtn(target);
     } else if (target.innerText === 'Last day') {
-      this.renderChart(target, this.todayCases, this.todayRecovered, this.todayDeaths);
+      this.renderChart(target, this.todayCases, this.todayDeaths, this.todayRecovered);
+      this.addSelectedClassBtn(target);
     } else if (target.innerText.includes('Per 100')) {
       this.renderChart(target, this.casesPerOneMillion,
-        this.recoveredPerOneMillion, this.deathsPerOneMillion);
+        this.deathsPerOneMillion, this.recoveredPerOneMillion);
+      this.addSelectedClassBtn(target);
     } else if (target.innerText.includes('Last day per 100')) {
-      this.renderChart(target, this.todayRecoveredPerOneMillion,
-        this.todayCasesPerOneMillion,
-        this.todayDeathsPerOneMillion);
+      this.renderChart(target, this.todayCasesPerOneMillion,
+        this.todayDeathsPerOneMillion, this.todayRecoveredPerOneMillion);
+      this.addSelectedClassBtn(target);
     }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  addSelectedClassBtn(target) {
+    target.classList.add('selected-btn');
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  removeClassBtn() {
+    [...radioBtns].forEach((item) => {
+      item.classList.remove('selected-btn');
+      item.classList.remove('not-selected-btn');
+    });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getRadioBtnsDefaultBg() {
+    [...radioBtns].forEach((item) => {
+      const radioBtn = item;
+      if (radioBtn.innerHTML.includes('Days')) {
+        radioBtn.classList.add('selected-btn');
+        radioBtn.classList.remove('not-selected-btn');
+      } else {
+        radioBtn.classList.remove('selected-btn');
+        radioBtn.classList.add('not-selected-btn');
+      }
+    });
   }
 
   addRadioBtnsEvent() {
