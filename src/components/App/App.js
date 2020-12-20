@@ -37,6 +37,8 @@ export default class App {
       this.countryInput.value = constants.config.defaultCountryTitle;
       this.ConditionalListing.update(this.currentCountry);
       this.mainTable.resetCountry();
+      this.ChartJS.renderDefaultTotalChart();
+      this.ChartJS.getRadioBtnsDefaultBg();
     });
   }
 
@@ -46,7 +48,7 @@ export default class App {
         this.currentCountry = data.country;
         this.updateCountryInput();
         this.ConditionalListing.update(this.currentCountry);
-        this.chart.update();
+        this.ChartJS.update(this.currentCountry);
       }
     });
   }

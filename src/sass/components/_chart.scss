@@ -53,6 +53,19 @@
   }
  }
 
+ .selected-btn {
+  background-color: $color-blue-dark;
+  color: $color-white;
+  border: 1px solid $color-border;
+  @include text-shadow;
+ }
+
+ .not-selected-btn {
+  background-color: $color-blue-light;
+  border: 1px solid $color-border;
+  color: white;
+ }
+
  .row-1, .row-2 {
    margin-bottom: 20px;
  }
@@ -65,13 +78,6 @@
    visibility: hidden;
    height: 0;
    width: 0;
- }
-
- input[type="radio"]:checked + label {
-   background-color: $color-blue-dark;
-   color: $color-white;
-   border: 1px solid $color-border;
-   @include text-shadow;
  }
 
  input[type="radio"]:hover:not(:checked) + label {
