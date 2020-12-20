@@ -32,6 +32,12 @@ export default class MainTable {
     });
   }
 
+  resetCountry() {
+    const event = new Event('keyup');
+    this.search.value = '';
+    this.search.dispatchEvent(event);
+  }
+
   render() {
     this.wrapper.innerHTML = tableUtils.getMainChunk();
     this.tbody = this.wrapper.querySelector('.countries-table__body');

@@ -1,3 +1,7 @@
+export const config = {
+  defaultCountryTitle: 'All worlds',
+};
+
 export const totalsTypes = ['cases', 'deaths', 'recovered'];
 export const todayTypes = ['todayCases', 'todayDeaths', 'todayRecovered'];
 export const totalsTypesTable = ['cases', 'deaths', 'recovered', 'flag', 'country'];

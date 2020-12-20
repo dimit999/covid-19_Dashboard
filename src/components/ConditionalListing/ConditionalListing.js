@@ -6,7 +6,6 @@ import * as constants from '../../constants/constants';
 export default class ConditionalListing {
   constructor(data) {
     this.data = data;
-    this.currentCountry = null;
     this.countsData = null;
     this.wrapper = document.querySelector('.common-tables__wrapper');
     this.tableCards = {};
@@ -26,20 +25,23 @@ export default class ConditionalListing {
 
   async update(country) {
     const url = constants.apiUrls.worldometers;
-    const urlParameter = `${constants.worldParameters.countries}/${country}`;
-    const countData = await utils.fetchData(url, { yesterday: false }, urlParameter);
+    let urlParameter;
 
-    this.currentCountry = country;
-    this.countsData = countData;
+    if (country) {
+      urlParameter = `${constants.worldParameters.countries}/${country}`;
+    } else {
+      urlParameter = constants.worldParameters.all;
+    }
+
+    this.countsData = await utils.fetchData(url, { yesterday: false }, urlParameter);
     this.updateCards();
   }
 
   async initCount() {
     const url = constants.apiUrls.worldometers;
     const urlParameter = constants.worldParameters.all;
-    const countData = await utils.fetchData(url, { yesterday: false }, urlParameter);
 
-    this.countsData = countData;
+    this.countsData = await utils.fetchData(url, { yesterday: false }, urlParameter);
   }
 
   async render() {

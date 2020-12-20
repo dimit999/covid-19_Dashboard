@@ -13,7 +13,8 @@ export default class App {
     this.ConditionalListing = utils.listing(ConditionalListing, constants.conditionalValues);
     this.mainTable = new MainTable(constants.MaintableData);
     this.countryInput = document.querySelector('.common-tables__country-title input');
-    this.currentCountry = null;
+    this.countryResetBtn = document.querySelector('.reset-btn');
+    this.currentCountry = '';
   }
 
   init() {
@@ -21,17 +22,21 @@ export default class App {
     this.ConditionalListing.render();
     this.mainTable.render();
     this.stateListener();
+    this.events();
   }
 
   updateCountryInput() {
     this.countryInput.value = this.currentCountry;
   }
 
-  /* events() {
-    this.countryInput.addEventListener('change', () => {
-      let val = this.countryInput.value;
+  events() {
+    this.countryResetBtn.addEventListener('click', () => {
+      this.currentCountry = '';
+      this.countryInput.value = constants.config.defaultCountryTitle;
+      this.ConditionalListing.update(this.currentCountry);
+      this.mainTable.resetCountry();
     });
-  } */
+  }
 
   stateListener() {
     statObserver.subscribe((data) => {
