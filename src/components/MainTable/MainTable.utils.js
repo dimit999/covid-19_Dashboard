@@ -20,3 +20,16 @@ export const getMainChunk = () => {
   </div>`;
   return chunk;
 };
+
+export const checkCountry = (data, value) => {
+  let word = null;
+  Object.keys(data).some((idx) => {
+    if (value.trim().toLowerCase() === data[idx].country.toLowerCase()) {
+      word = data[idx].country;
+      return true;
+    }
+    return false;
+  });
+
+  return word;
+};
