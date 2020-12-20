@@ -1025,6 +1025,10 @@ input[type="radio"] {
   width: 0;
 }
 
+input[type="radio"]:hover {
+  cursor: pointer;
+}
+
 input[type="radio"]:hover:not(:checked) + label {
   background-color: #4646c2;
   border: 1px solid #876ED7;

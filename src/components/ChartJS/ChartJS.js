@@ -15,12 +15,12 @@ export default class ChartJS {
     this.todayRecovered = null;
     this.todayCases = null;
     this.todayDeaths = null;
-    this.recoveredPerOneMillion = null;
-    this.casesPerOneMillion = null;
-    this.deathsPerOneMillion = null;
-    this.todayRecoveredPerOneMillion = null;
-    this.todayCasesPerOneMillion = null;
-    this.todayDeathsPerOneMillion = null;
+    this.recoveredPer100k = null;
+    this.casesPer100k = null;
+    this.deathsPer100k = null;
+    this.todayRecoveredPer100k = null;
+    this.todayCasesPer100k = null;
+    this.todayDeathsPer100k = null;
     this.daysTotalCases = null;
     this.daysTotalRecovered = null;
     this.daysTotalDeaths = null;
@@ -59,12 +59,12 @@ export default class ChartJS {
     this.todayRecovered = todayRecovered;
     this.todayCases = todayCases;
     this.todayDeaths = todayDeaths;
-    this.recoveredPerOneMillion = Math.ceil((recovered / population) * 100000);
-    this.casesPerOneMillion = Math.ceil((cases / population) * 100000);
-    this.deathsPerOneMillion = Math.ceil((deaths / population) * 100000);
-    this.todayRecoveredPerOneMillion = Math.ceil((todayRecovered / population) * 100000);
-    this.todayCasesPerOneMillion = Math.ceil((todayCases / population) * 100000);
-    this.todayDeathsPerOneMillion = Math.ceil((todayDeaths / population) * 100000);
+    this.recoveredPer100k = Math.ceil((recovered / population) * 100000);
+    this.casesPer100k = Math.ceil((cases / population) * 100000);
+    this.deathsPer100k = Math.ceil((deaths / population) * 100000);
+    this.todayRecoveredPer100k = Math.ceil((todayRecovered / population) * 100000);
+    this.todayCasesPer100k = Math.ceil((todayCases / population) * 100000);
+    this.todayDeathsPer100k = Math.ceil((todayDeaths / population) * 100000);
   }
 
   async initTotalCountByCountries() {
@@ -155,11 +155,13 @@ export default class ChartJS {
             this.chartPieWidget(element.todayCases,
               element.todayDeaths, element.todayRecovered);
           } else if (target.innerText.includes('Per 100')) {
-            this.chartPieWidget(element.casesPerOneMillion,
-              element.deathsPerOneMillion, element.recoveredPerOneMillion);
+            this.chartPieWidget(Math.ceil((element.cases / element.population) * 100000),
+              Math.ceil((element.deaths / element.population) * 100000),
+              Math.ceil((element.recovered / element.population) * 100000));
           } else if (target.innerText.includes('Last day per 100')) {
-            this.chartPieWidget(element.oneCasePerPeople,
-              element.oneDeathPerPeople, element.oneTestPerPeople);
+            this.chartPieWidget(Math.ceil((element.todayCases / element.population) * 100000),
+              Math.ceil((element.todayDeaths / element.population) * 100000),
+              Math.ceil((element.todayRecovered / element.population) * 100000));
           }
         }
       });
@@ -181,12 +183,12 @@ export default class ChartJS {
       this.renderChart(target, this.todayCases, this.todayDeaths, this.todayRecovered);
       this.addSelectedClassBtn(target);
     } else if (target.innerText.includes('Per 100')) {
-      this.renderChart(target, this.casesPerOneMillion,
-        this.deathsPerOneMillion, this.recoveredPerOneMillion);
+      this.renderChart(target, this.casesPer100k,
+        this.deathsPer100k, this.recoveredPer100k);
       this.addSelectedClassBtn(target);
     } else if (target.innerText.includes('Last day per 100')) {
-      this.renderChart(target, this.todayCasesPerOneMillion,
-        this.todayDeathsPerOneMillion, this.todayRecoveredPerOneMillion);
+      this.renderChart(target, this.todayCasesPer100k,
+        this.todayDeathsPer100k, this.todayRecoveredPer100k);
       this.addSelectedClassBtn(target);
     }
   }
