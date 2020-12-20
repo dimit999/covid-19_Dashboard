@@ -1,9 +1,29 @@
-const css = document.createElement('link');
-const script = document.createElement('script');
+import statObserver from '../Observer';
+import * as constants from './Map.constants';
+import * as mapUtils from './Map.utils';
 
-css.setAttribute('rel', 'stylesheet');
-css.setAttribute('href', 'http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css');
-script.setAttribute('src', 'http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js');
+export default class MainMap {
+  constructor() {
+    this.data = null;
+    this.map = null;
+    this.stateListener();
+  }
 
-document.body.append(css);
-document.body.append(script);
+  async render() {
+    await mapUtils.addResources();
+    this.map = mapUtils.buildMap(constants.mapOptions);
+  }
+
+  setMarkers() {
+    mapUtils.setMarkers(this.map, this.data);
+  }
+
+  stateListener() {
+    statObserver.subscribe((data) => {
+      if ('map' in data) {
+        this.data = data.map;
+        this.setMarkers();
+      }
+    });
+  }
+}

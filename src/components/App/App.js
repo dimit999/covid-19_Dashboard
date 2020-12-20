@@ -7,7 +7,7 @@ import ConditionalListing from '../ConditionalListing';
 import ChartJS from '../ChartJS';
 import MainTable from '../MainTable';
 import statObserver from '../Observer';
-import map from '../Map';
+import MainMap from '../Map';
 
 export default class App {
   constructor() {
@@ -15,6 +15,7 @@ export default class App {
     this.ConditionalListing = utils.listing(ConditionalListing, constants.conditionalValues);
     this.ChartJS = new ChartJS();
     this.mainTable = new MainTable(constants.MaintableData);
+    this.mainMap = new MainMap();
     this.countryInput = document.querySelector('.common-tables__country-title input');
     this.countryResetBtn = document.querySelector('.reset-btn');
     this.currentCountry = '';
@@ -24,6 +25,7 @@ export default class App {
     this.totalListing.render();
     this.ConditionalListing.render();
     this.mainTable.render();
+    this.mainMap.render();
     this.stateListener();
     this.events();
   }
@@ -53,6 +55,7 @@ export default class App {
       if ('country' in data) {
         this.currentCountry = data.country;
         this.updateCountryInput();
+        this.mainTable.setSearchValue(data.country);
         this.ConditionalListing.update(this.currentCountry);
         this.ChartJS.update(this.currentCountry);
       }

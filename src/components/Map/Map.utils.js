@@ -1,0 +1,66 @@
+import statObserver from '../Observer';
+import * as constants from './Map.constants';
+
+export const addResources = async () => {
+  const css = document.createElement('link');
+  const script = document.createElement('script');
+
+  css.setAttribute('rel', 'stylesheet');
+  css.setAttribute('href', 'http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css');
+  script.setAttribute('src', 'http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js');
+
+  document.body.append(css);
+  document.body.append(script);
+
+  const pass = new Promise((resolve) => {
+    script.onload = () => {
+      resolve(true);
+    };
+  });
+
+  return pass;
+};
+
+export const getPopupChunk = (data) => {
+  const chunk = `
+    <b>${data.country}:</b><br>
+    <span>cases: ${data.cases}</span><br>
+    <span>deaths: ${data.deaths}</span><br>
+    <span>recovered: ${data.recovered}</span>
+  `;
+
+  return chunk;
+};
+
+export const buildMap = (mapOptions) => {
+  const map = new window.L.Map('map', mapOptions);
+  const layer = new window.L.TileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png');
+
+  map.addLayer(layer);
+  return map;
+};
+
+export const setMarkers = (map, data) => {
+  const customIcon = window.L.icon(constants.iconOptions);
+
+  Object.keys(data).forEach((item) => {
+    const markerOnClick = ({ target }) => {
+      const country = target.options.title;
+      statObserver.broadcast({ country });
+    };
+
+    const markOptions = {
+      icon: customIcon,
+      title: data[item].country,
+    };
+
+    const { lat } = data[item].countryInfo;
+    const { long } = data[item].countryInfo;
+    const marker = new window.L.Marker([lat, long], markOptions);
+    const popup = getPopupChunk(data[item]);
+
+    marker.bindPopup(popup).openPopup();
+    marker.on('click', markerOnClick);
+    marker.addTo(map);
+  });
+};
