@@ -7,6 +7,7 @@ import ConditionalListing from '../ConditionalListing';
 import ChartJS from '../ChartJS';
 import MainTable from '../MainTable';
 import statObserver from '../Observer';
+import map from '../Map';
 
 export default class App {
   constructor() {
