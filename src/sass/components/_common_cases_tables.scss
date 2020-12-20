@@ -156,4 +156,9 @@
     animation-timing-function: ease;
     animation-duration: 1s;
   }
+
+  &:hover {
+    outline: none;
+    background-color: $color-background-top-elem;
+  }
 }

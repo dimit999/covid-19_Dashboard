@@ -7,6 +7,8 @@ export default class ConditionalListing {
   constructor(data) {
     this.data = data;
     this.countsData = null;
+    this.countsDataAll = null;
+    this.countsDataCountry = null;
     this.wrapper = document.querySelector('.common-tables__wrapper');
     this.tableCards = {};
   }
@@ -24,16 +26,16 @@ export default class ConditionalListing {
   }
 
   async update(country) {
-    const url = constants.apiUrls.worldometers;
-    let urlParameter;
-
     if (country) {
-      urlParameter = `${constants.worldParameters.countries}/${country}`;
+      const url = constants.apiUrls.worldometers;
+      const urlParameter = `${constants.worldParameters.countries}/${country}`;
+
+      this.countsDataCountry = await utils.fetchData(url, { yesterday: false }, urlParameter);
+      this.countsData = this.countsDataCountry;
     } else {
-      urlParameter = constants.worldParameters.all;
+      this.countsData = this.countsDataAll;
     }
 
-    this.countsData = await utils.fetchData(url, { yesterday: false }, urlParameter);
     this.updateCards();
   }
 
@@ -41,7 +43,8 @@ export default class ConditionalListing {
     const url = constants.apiUrls.worldometers;
     const urlParameter = constants.worldParameters.all;
 
-    this.countsData = await utils.fetchData(url, { yesterday: false }, urlParameter);
+    this.countsDataAll = await utils.fetchData(url, { yesterday: false }, urlParameter);
+    this.countsData = this.countsDataAll;
   }
 
   async render() {

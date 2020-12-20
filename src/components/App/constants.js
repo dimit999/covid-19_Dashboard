@@ -1,5 +1,5 @@
 export const config = {
-  defaultCountryTitle: 'All worlds',
+  defaultCountryTitle: 'All world',
 };
 
 export const totalsTypes = ['cases', 'deaths', 'recovered'];

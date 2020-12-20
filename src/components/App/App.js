@@ -44,6 +44,7 @@ export default class App {
         this.currentCountry = data.country;
         this.updateCountryInput();
         this.ConditionalListing.update(this.currentCountry);
+        this.chart.update();
       }
     });
   }
