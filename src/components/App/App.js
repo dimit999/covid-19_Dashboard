@@ -4,29 +4,48 @@ import utils from '../../Utils';
 import * as constants from './constants';
 import TotalListing from '../TotalListing';
 import ConditionalListing from '../ConditionalListing';
+import MainTable from '../MainTable';
+import statObserver from '../Observer';
 
 export default class App {
   constructor() {
     this.totalListing = utils.listing(TotalListing, constants.totalsTypes);
     this.ConditionalListing = utils.listing(ConditionalListing, constants.conditionalValues);
+    this.mainTable = new MainTable(constants.MaintableData);
+    this.countryInput = document.querySelector('.common-tables__country-title input');
+    this.countryResetBtn = document.querySelector('.reset-btn');
+    this.currentCountry = '';
   }
 
   init() {
-    // запуск
     this.totalListing.render();
     this.ConditionalListing.render();
-    // this.stateListener();
-    // this.events();
+    this.mainTable.render();
+    this.stateListener();
+    this.events();
   }
 
-  /* events() {
-    // тут будут отслеживаться dom евенты
+  updateCountryInput() {
+    this.countryInput.value = this.currentCountry;
+  }
+
+  events() {
+    this.countryResetBtn.addEventListener('click', () => {
+      this.currentCountry = '';
+      this.countryInput.value = constants.config.defaultCountryTitle;
+      this.ConditionalListing.update(this.currentCountry);
+      this.mainTable.resetCountry();
+    });
   }
 
   stateListener() {
-    // state менеджер, будет следить за изменениями объектов
-    /* observer.subscribe((data) => {
-
+    statObserver.subscribe((data) => {
+      if ('country' in data) {
+        this.currentCountry = data.country;
+        this.updateCountryInput();
+        this.ConditionalListing.update(this.currentCountry);
+        this.chart.update();
+      }
     });
-  } */
+  }
 }
