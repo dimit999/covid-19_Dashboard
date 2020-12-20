@@ -38,7 +38,6 @@ export default class App {
       this.ConditionalListing.update(this.currentCountry);
       this.mainTable.resetCountry();
       this.ChartJS.renderDefaultTotalChart();
-      this.ChartJS.getRadioBtnsDefaultBg();
     });
   }
 

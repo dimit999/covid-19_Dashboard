@@ -93,6 +93,7 @@ export default class ChartJS {
 
   /* Render Chart */
   renderDefaultTotalChart() {
+    this.getRadioBtnsDefaultBg();
     if (this.selectedCountry) {
       this.daysTotalCountriesData.forEach((element) => {
         if (element.country === this.selectedCountry) {
@@ -172,6 +173,7 @@ export default class ChartJS {
     this.removeClassBtn();
     if (target.innerText.includes('Days')) {
       this.renderDefaultTotalChart();
+      this.getRadioBtnsDefaultBg();
     } else if (target.innerText.includes('Total')) {
       this.renderChart(target, this.allCases, this.allDeaths, this.allRecovered);
       this.addSelectedClassBtn(target);
@@ -206,7 +208,7 @@ export default class ChartJS {
   getRadioBtnsDefaultBg() {
     [...radioBtns].forEach((item) => {
       const radioBtn = item;
-      if (radioBtn.innerText.includes('Days')) {
+      if (radioBtn.innerHTML.includes('Days')) {
         radioBtn.classList.add('selected-btn');
         radioBtn.classList.remove('not-selected-btn');
       } else {
