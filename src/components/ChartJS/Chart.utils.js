@@ -3,7 +3,6 @@ import utils from '../../Utils';
 /* Chart parameters */
 const chart = document.getElementById('chart').getContext('2d');
 const radioBtns = document.querySelectorAll('.radio-buttons-group__btn');
-const daysRadioBtn = document.querySelector('.days');
 const lineChartSection = document.querySelector('.line-chart');
 
 const gradientRecovered = chart.createLinearGradient(0, 0, 0, 450);
@@ -73,6 +72,17 @@ function getLineChartOptions(region) {
   return lineOptions;
 }
 
+function getPieChartOptions(region) {
+  const pieOptions = {
+    responsive: true,
+    title: {
+      display: true,
+      text: `Statistic for ${region}`,
+    },
+  };
+  return pieOptions;
+}
+
 /* Get chart data */
 function getLineChartData(cases, deaths, recovered, xData) {
   const data = {
@@ -133,7 +143,33 @@ function fullScreenBtnEvent() {
 
 fullScreenBtnEvent();
 
+/* Radio btn colored actions */
+function addSelectedClassBtn(target) {
+  target.classList.add('selected-btn');
+}
+
+function removeClassBtn() {
+  [...radioBtns].forEach((item) => {
+    item.classList.remove('selected-btn');
+    item.classList.remove('not-selected-btn');
+  });
+}
+
+function getRadioBtnsDefaultBg() {
+  [...radioBtns].forEach((item) => {
+    const radioBtn = item;
+    if (radioBtn.innerHTML.includes('Days')) {
+      radioBtn.classList.add('selected-btn');
+      radioBtn.classList.remove('not-selected-btn');
+    } else {
+      radioBtn.classList.remove('selected-btn');
+      radioBtn.classList.add('not-selected-btn');
+    }
+  });
+}
+
 export {
   chart, getLineChartOptions, radioBtns,
-  getLineChartData, getPieChartData,
+  getPieChartOptions, getLineChartData, getPieChartData, addSelectedClassBtn,
+  removeClassBtn, getRadioBtnsDefaultBg,
 };

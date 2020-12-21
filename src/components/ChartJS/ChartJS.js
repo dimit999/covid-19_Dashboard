@@ -1,7 +1,9 @@
 import Chart from 'chart.js';
 import {
-  chart, getLineChartOptions, radioBtns,
+  chart, getPieChartOptions, getLineChartOptions, radioBtns,
   getLineChartData, getPieChartData,
+  addSelectedClassBtn, removeClassBtn,
+  getRadioBtnsDefaultBg,
 } from './Chart.utils';
 import utils from '../../Utils';
 import * as constants from '../../constants/constants';
@@ -94,7 +96,7 @@ export default class ChartJS {
   /* Render Chart */
   renderDefaultTotalChart() {
     this.region = this.selectedCountry || 'All World';
-    this.getRadioBtnsDefaultBg();
+    getRadioBtnsDefaultBg();
     if (this.selectedCountry) {
       this.daysTotalCountriesData.forEach((element) => {
         if (element.country === this.selectedCountry) {
@@ -127,13 +129,7 @@ export default class ChartJS {
     window.chartInstance = new Chart(chart, {
       type: 'pie',
       data: getPieChartData(cases, deaths, recovered),
-      options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: `Statistic for ${this.region}`,
-        },
-      },
+      options: getPieChartOptions(this.region),
     });
     window.chartInstance.update();
   }
@@ -166,52 +162,25 @@ export default class ChartJS {
 
   /* Render Chart */
   renderCharts({ target }) {
-    this.removeClassBtn();
+    removeClassBtn();
     if (target.innerText.includes('Days')) {
       this.renderDefaultTotalChart();
-      this.getRadioBtnsDefaultBg();
+      getRadioBtnsDefaultBg();
     } else if (target.innerText.includes('Total')) {
       this.renderChart(target, this.allCases, this.allDeaths, this.allRecovered);
-      this.addSelectedClassBtn(target);
+      addSelectedClassBtn(target);
     } else if (target.innerText === 'Last day') {
       this.renderChart(target, this.todayCases, this.todayDeaths, this.todayRecovered);
-      this.addSelectedClassBtn(target);
+      addSelectedClassBtn(target);
     } else if (target.innerText.includes('Per 100')) {
       this.renderChart(target, this.casesPer100k,
         this.deathsPer100k, this.recoveredPer100k);
-      this.addSelectedClassBtn(target);
+      addSelectedClassBtn(target);
     } else if (target.innerText.includes('Last day per 100')) {
       this.renderChart(target, this.todayCasesPer100k,
         this.todayDeathsPer100k, this.todayRecoveredPer100k);
-      this.addSelectedClassBtn(target);
+      addSelectedClassBtn(target);
     }
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  addSelectedClassBtn(target) {
-    target.classList.add('selected-btn');
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  removeClassBtn() {
-    [...radioBtns].forEach((item) => {
-      item.classList.remove('selected-btn');
-      item.classList.remove('not-selected-btn');
-    });
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  getRadioBtnsDefaultBg() {
-    [...radioBtns].forEach((item) => {
-      const radioBtn = item;
-      if (radioBtn.innerHTML.includes('Days')) {
-        radioBtn.classList.add('selected-btn');
-        radioBtn.classList.remove('not-selected-btn');
-      } else {
-        radioBtn.classList.remove('selected-btn');
-        radioBtn.classList.add('not-selected-btn');
-      }
-    });
   }
 
   addRadioBtnsEvent() {
