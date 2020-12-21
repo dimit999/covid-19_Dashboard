@@ -4,10 +4,10 @@ import {
   getLineChartData, getPieChartData,
   addSelectedClassBtn, removeClassBtn,
   getRadioBtnsDefaultBg,
-} from './Chart.utils';
+} from './ChartJS.utils';
 import utils from '../../Utils';
 import * as constants from '../../constants/constants';
-import chartButtons from './constants';
+import chartButtons from './ChartJS.constants';
 
 export default class ChartJS {
   constructor() {
