@@ -101,6 +101,7 @@ export default class MainTable {
     const countData = await utils.fetchData(url, this.data.sort, urlParameter);
 
     this.countsData = countData;
+    statObserver.broadcast({ map: countData });
     this.renderCount();
     this.events();
   }
