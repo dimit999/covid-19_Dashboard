@@ -30,6 +30,7 @@ function getLineChartOptions(region) {
       display: true,
       text: `Statistic for ${region}`,
       fontColor: 'white',
+      fontSize: 16,
     },
     animation: {
       easing: 'easeInOutQuad',
@@ -91,6 +92,7 @@ function getPieChartOptions(region) {
       display: true,
       text: `Statistic for ${region}`,
       fontColor: 'white',
+      fontSize: 16,
     },
     legend: {
       labels: {
