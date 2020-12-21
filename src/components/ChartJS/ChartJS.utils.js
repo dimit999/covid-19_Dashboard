@@ -5,9 +5,9 @@ const chart = document.getElementById('chart').getContext('2d');
 const radioBtns = document.querySelectorAll('.radio-buttons-group__btn');
 const lineChartSection = document.querySelector('.line-chart');
 
-const gradientRecovered = chart.createLinearGradient(0, 0, 0, 850);
-const gradientCases = chart.createLinearGradient(0, 0, 0, 650);
-const gradientDeaths = chart.createLinearGradient(0, 0, 0, 550);
+const gradientRecovered = chart.createLinearGradient(5, 10, 0, 300);
+const gradientCases = chart.createLinearGradient(5, 10, 0, 300);
+const gradientDeaths = chart.createLinearGradient(5, 10, 0, 300);
 
 gradientRecovered.addColorStop(0, 'rgb(4, 221, 76)');
 gradientRecovered.addColorStop(0.5, 'rgb(28, 182, 79)');
@@ -15,11 +15,11 @@ gradientRecovered.addColorStop(1, 'rgb(4, 221, 76)');
 
 gradientCases.addColorStop(0, 'rgb(135, 20, 243)');
 gradientCases.addColorStop(0.5, 'rgb(117, 35, 194)');
-gradientCases.addColorStop(1, 'rgb(135, 20, 243)');
+gradientCases.addColorStop(1, 'rgb(1, 20, 5)');
 
 gradientDeaths.addColorStop(0, 'rgb(255, 4, 25)');
 gradientDeaths.addColorStop(0.5, 'rgb(184, 44, 56)');
-gradientDeaths.addColorStop(1, 'rgb(255, 4, 25)');
+gradientDeaths.addColorStop(1, 'rgb(150, 4, 15)');
 
 /* Chart options */
 function getLineChartOptions(region) {
