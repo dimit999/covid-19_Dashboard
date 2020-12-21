@@ -4,6 +4,11 @@
   align-items: center;
 }
 
+.chart_reset_btn {
+  width: 35px;
+  height: 35px;
+}
+
 .line-chart {
 	animation: fadeIn 600ms cubic-bezier(.57,.25,.65,1) 1 forwards;
   opacity: 0;
