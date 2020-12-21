@@ -1,5 +1,5 @@
 const chartButtons = {
-  days: 'Days',
+  historical: 'Historical',
   total: 'Total',
   lastDay: 'Last day',
   per100: 'Per 100',

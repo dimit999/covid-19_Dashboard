@@ -162,7 +162,7 @@ export default class ChartJS {
   /* Render Chart */
   renderCharts({ target }) {
     removeClassBtn();
-    if (target.innerText.includes(chartButtons.days)) {
+    if (target.innerText.includes(chartButtons.historical)) {
       this.renderDefaultTotalChart();
       getRadioBtnsDefaultBg();
     } else if (target.innerText.includes(chartButtons.total)) {

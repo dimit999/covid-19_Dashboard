@@ -178,7 +178,7 @@ function removeClassBtn() {
 function getRadioBtnsDefaultBg() {
   [...radioBtns].forEach((item) => {
     const radioBtn = item;
-    if (radioBtn.innerHTML.includes('Days')) {
+    if (radioBtn.innerHTML.includes('Historical')) {
       radioBtn.classList.add('selected-btn');
       radioBtn.classList.remove('not-selected-btn');
     } else {
