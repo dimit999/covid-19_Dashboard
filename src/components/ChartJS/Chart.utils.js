@@ -1,7 +1,9 @@
+import utils from '../../Utils';
+
 /* Chart parameters */
 const chart = document.getElementById('chart').getContext('2d');
 const radioBtns = document.querySelectorAll('.radio-buttons-group__btn');
-const daysRadioBtn = document.querySelector('.days');
+const lineChartSection = document.querySelector('.line-chart');
 
 const gradientRecovered = chart.createLinearGradient(0, 0, 0, 450);
 const gradientCases = chart.createLinearGradient(0, 0, 0, 650);
@@ -20,69 +22,86 @@ gradientDeaths.addColorStop(0.5, 'rgba(255, 0, 0, 5.5)');
 gradientDeaths.addColorStop(1, 'rgba(255, 0, 0, 3)');
 
 /* Chart options */
-const lineOptions = {
-  responsive: true,
-  maintainAspectRatio: true,
-  animation: {
-    easing: 'easeInOutQuad',
-    duration: 520,
-  },
-  scales: {
-    xAxes: [{
-      gridLines: {
-        color: 'rgba(200, 200, 200, 0.05)',
-        lineWidth: 1,
-      },
-    }],
-    yAxes: [{
-      gridLines: {
-        color: 'rgba(200, 200, 200, 0.08)',
-        lineWidth: 1,
-      },
-    }],
-  },
-  elements: {
-    line: {
-      tension: 0.4,
+function getLineChartOptions(region) {
+  const lineOptions = {
+    responsive: true,
+    maintainAspectRatio: true,
+    title: {
+      display: true,
+      text: `Statistic for ${region}`,
+      fontColor: 'white',
+      fontSize: 16,
     },
-  },
-  legend: {
-    display: true,
-  },
-  point: {
-    backgroundColor: 'white',
-  },
-  tooltips: {
-    titleFontFamily: 'Open Sans',
-    backgroundColor: 'rgba(0,0,4,0.3)',
-    titleFontColor: 'red',
-    caretSize: 5,
-    cornerRadius: 2,
-    xPadding: 10,
-    yPadding: 10,
-  },
-};
+    animation: {
+      easing: 'easeInOutQuad',
+      duration: 520,
+    },
+    scales: {
+      xAxes: [{
+        gridLines: {
+          color: 'rgba(200, 200, 200, 0.05)',
+          lineWidth: 1,
+        },
+        ticks: {
+          fontColor: 'rgb(139, 197, 231)',
+          fontSize: 12,
+        },
+      }],
+      yAxes: [{
+        gridLines: {
+          color: 'rgba(200, 200, 200, 0.2)',
+          lineWidth: 1,
+        },
+        ticks: {
+          fontColor: 'rgb(139, 197, 231)',
+          fontSize: 12,
+        },
+      }],
+    },
+    elements: {
+      line: {
+        tension: 0.4,
+      },
+    },
+    legend: {
+      display: true,
+      labels: {
+        fontColor: 'white',
+      },
+    },
+    point: {
+      backgroundColor: 'white',
+    },
+    tooltips: {
+      titleFontFamily: 'Open Sans',
+      backgroundColor: 'rgba(0,0,4,0.3)',
+      titleFontColor: 'white',
+      caretSize: 5,
+      cornerRadius: 2,
+      xPadding: 10,
+      yPadding: 10,
+    },
+  };
+  return lineOptions;
+}
 
-const barOptions = {
-  responsive: true,
-  scales: {
-    xAxes: [{
-      ticks: {
-        maxRotation: 10,
-        minRotation: 0,
-      },
-      gridLines: {
-        offsetGridLines: true,
+function getPieChartOptions(region) {
+  const pieOptions = {
+    responsive: true,
+    title: {
+      display: true,
+      text: `Statistic for ${region}`,
+      fontColor: 'white',
+      fontSize: 16,
+    },
+    legend: {
+      labels: {
+        fontColor: 'white',
       },
     },
-    ],
-    yAxes: [{
-      ticks: {
-        beginAtZero: true,
-      },
-    }],
-  },
-};
+  };
+  return pieOptions;
+}
 
 /* Get chart data */
 function getLineChartData(cases, deaths, recovered, xData) {
@@ -93,7 +112,7 @@ function getLineChartData(cases, deaths, recovered, xData) {
       backgroundColor: gradientCases,
       pointBackgroundColor: 'rgba(92, 0, 167, 0.5)',
       borderWidth: 1,
-      borderColor: '#911215',
+      borderColor: 'rgba(255,99,132,1)',
       data: cases,
     },
     {
@@ -101,7 +120,7 @@ function getLineChartData(cases, deaths, recovered, xData) {
       backgroundColor: gradientDeaths,
       pointBackgroundColor: 'rgba(255, 0, 0, 3)',
       borderWidth: 1,
-      borderColor: '#911215',
+      borderColor: 'rgba(255, 206, 86, 1)',
       data: deaths,
     },
     {
@@ -109,7 +128,7 @@ function getLineChartData(cases, deaths, recovered, xData) {
       backgroundColor: gradientRecovered,
       pointBackgroundColor: 'rgba(0, 189, 85, 0.5)',
       borderWidth: 1,
-      borderColor: '#911215',
+      borderColor: 'rgba(54, 162, 235, 1)',
       data: recovered,
     }],
   };
@@ -137,28 +156,40 @@ function getPieChartData(cases, deaths, recovered) {
   return data;
 }
 
-function getBarChartData(cases, deaths, recovered) {
-  const data = {
-    labels: ['Cases', 'Deaths', 'Recovered'],
-    datasets: [{
-      data: [cases, deaths, recovered],
-      fill: false,
-      backgroundColor: [
-        'rgba(0, 189, 85, 0.5)',
-        'rgba(92, 0, 167, 0.5)',
-        'rgba(255, 0, 0, 3)'],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-      ],
-      borderWidth: 1,
-    }],
-  };
-  return data;
+/* Get fullscreen for chart */
+function fullScreenBtnEvent() {
+  document.querySelector('.full-screen').addEventListener('click', () => { utils.openFullscreen(lineChartSection); });
+}
+
+fullScreenBtnEvent();
+
+/* Radio btn colored actions */
+function addSelectedClassBtn(target) {
+  target.classList.add('selected-btn');
+}
+
+function removeClassBtn() {
+  [...radioBtns].forEach((item) => {
+    item.classList.remove('selected-btn');
+    item.classList.remove('not-selected-btn');
+  });
+}
+
+function getRadioBtnsDefaultBg() {
+  [...radioBtns].forEach((item) => {
+    const radioBtn = item;
+    if (radioBtn.innerHTML.includes('Historical')) {
+      radioBtn.classList.add('selected-btn');
+      radioBtn.classList.remove('not-selected-btn');
+    } else {
+      radioBtn.classList.remove('selected-btn');
+      radioBtn.classList.add('not-selected-btn');
+    }
+  });
 }
 
 export {
-  chart, lineOptions, barOptions, radioBtns, daysRadioBtn,
-  getLineChartData, getPieChartData, getBarChartData,
+  chart, getLineChartOptions, radioBtns,
+  getPieChartOptions, getLineChartData, getPieChartData, addSelectedClassBtn,
+  removeClassBtn, getRadioBtnsDefaultBg,
 };

@@ -47,43 +47,15 @@ export const fetchData = async (url, body, entry = '') => {
   return data;
 };
 
-/* это на будущее, возможно придется переделывать вовсе
-const sortMethods = {
-  sortAplphabet(keys, object, prop, mode) {
-    const arr = keys.sort((a, b) => {
-      if (mode === 1) {
-        return object[b][prop].toLowerCase() < object[a][prop].toLowerCase() ? -1 : 0;
-      }
-
-      return object[b][prop].toLowerCase() > object[a][prop].toLowerCase() ? -1 : 0;
-    });
-
-    return arr;
-  },
-
-  sortNumeric(keys, object, prop, mode) {
-    const arr = keys.sort((a, b) => {
-      if (mode === 1) {
-        return object[a][prop] - object[b][prop];
-      }
-
-      return object[b][prop] - object[a][prop];
-    });
-
-    return arr;
-  },
-};
-
-export const sortObject = (object, prop, mode = 0) => {
-  const newObject = {};
-  const objKeys = Object.keys(object);
-  const method =
-  Number.isNaN(parseFloat(object[objKeys['0']][prop])) ? 'sortAplphabet' : 'sortNumeric';
-  const keys = sortMethods[method](objKeys, object, prop, mode);
-
-  keys.forEach((key) => {
-    newObject[key] = { ...object[key] };
-  });
-
-  return newObject;
-}; */
+export function openFullscreen(section) {
+  const elem = section;
+  if (elem.requestFullscreen) {
+    elem.webkitRequestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}

@@ -1,14 +1,16 @@
 import Chart from 'chart.js';
 import {
-  chart, lineOptions, barOptions, radioBtns, daysRadioBtn,
-  getLineChartData, getPieChartData, getBarChartData,
+  chart, getPieChartOptions, getLineChartOptions, radioBtns,
+  getLineChartData, getPieChartData,
+  addSelectedClassBtn, removeClassBtn,
+  getRadioBtnsDefaultBg,
 } from './Chart.utils';
 import utils from '../../Utils';
 import * as constants from '../../constants/constants';
+import chartButtons from './constants';
 
 export default class ChartJS {
   constructor() {
-    this.daysRadioBtn = daysRadioBtn;
     this.allRecovered = null;
     this.allCases = null;
     this.allDeaths = null;
@@ -32,6 +34,7 @@ export default class ChartJS {
     this.initDaysCountTotal();
     this.initDaysCountTotalByCountries();
     this.addRadioBtnsEvent();
+    this.region = null;
   }
 
   async update(country) {
@@ -93,7 +96,8 @@ export default class ChartJS {
 
   /* Render Chart */
   renderDefaultTotalChart() {
-    this.getRadioBtnsDefaultBg();
+    this.region = this.selectedCountry || 'All World';
+    getRadioBtnsDefaultBg();
     if (this.selectedCountry) {
       this.daysTotalCountriesData.forEach((element) => {
         if (element.country === this.selectedCountry) {
@@ -106,7 +110,6 @@ export default class ChartJS {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   chartLineWidget(cases, deaths, recovered) {
     const xData = Object.keys(cases);
     if (window.chartInstance) window.chartInstance.destroy();
@@ -115,31 +118,17 @@ export default class ChartJS {
       data: getLineChartData(Object.values(cases),
         Object.values(deaths),
         Object.values(recovered), xData),
-      lineOptions,
+      options: getLineChartOptions(this.region),
     });
     window.chartInstance.update();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   chartPieWidget(cases, deaths, recovered) {
     if (window.chartInstance) window.chartInstance.destroy();
     window.chartInstance = new Chart(chart, {
       type: 'pie',
       data: getPieChartData(cases, deaths, recovered),
-      options: {
-        responsive: true,
-      },
-    });
-    window.chartInstance.update();
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  chartBarWidget(cases, deaths, recovered) {
-    if (window.chartInstance) window.chartInstance.destroy();
-    window.chartInstance = new Chart(chart, {
-      type: 'bar',
-      data: getBarChartData(cases, deaths, recovered),
-      options: barOptions,
+      options: getPieChartOptions(this.region),
     });
     window.chartInstance.update();
   }
@@ -148,17 +137,17 @@ export default class ChartJS {
     if (this.selectedCountry) {
       this.commonTotalCountriesData.forEach((element) => {
         if (element.country === this.selectedCountry) {
-          if (target.innerText.includes('Total')) {
+          if (target.innerText.includes(chartButtons.total)) {
             this.chartPieWidget(element.cases,
               element.deaths, element.recovered);
-          } else if (target.innerText === 'Last day') {
+          } else if (target.innerText === chartButtons.lastDay) {
             this.chartPieWidget(element.todayCases,
               element.todayDeaths, element.todayRecovered);
-          } else if (target.innerText.includes('Per 100')) {
+          } else if (target.innerText.includes(chartButtons.per100)) {
             this.chartPieWidget(Math.ceil((element.cases / element.population) * 100000),
               Math.ceil((element.deaths / element.population) * 100000),
               Math.ceil((element.recovered / element.population) * 100000));
-          } else if (target.innerText.includes('Last day per 100')) {
+          } else if (target.innerText.includes(chartButtons.lastDayPer100)) {
             this.chartPieWidget(Math.ceil((element.todayCases / element.population) * 100000),
               Math.ceil((element.todayDeaths / element.population) * 100000),
               Math.ceil((element.todayRecovered / element.population) * 100000));
@@ -172,52 +161,25 @@ export default class ChartJS {
 
   /* Render Chart */
   renderCharts({ target }) {
-    this.removeClassBtn();
-    if (target.innerText.includes('Days')) {
+    removeClassBtn();
+    if (target.innerText.includes(chartButtons.historical)) {
       this.renderDefaultTotalChart();
-      this.getRadioBtnsDefaultBg();
-    } else if (target.innerText.includes('Total')) {
+      getRadioBtnsDefaultBg();
+    } else if (target.innerText.includes(chartButtons.total)) {
       this.renderChart(target, this.allCases, this.allDeaths, this.allRecovered);
-      this.addSelectedClassBtn(target);
-    } else if (target.innerText === 'Last day') {
+      addSelectedClassBtn(target);
+    } else if (target.innerText === chartButtons.lastDay) {
       this.renderChart(target, this.todayCases, this.todayDeaths, this.todayRecovered);
-      this.addSelectedClassBtn(target);
-    } else if (target.innerText.includes('Per 100')) {
+      addSelectedClassBtn(target);
+    } else if (target.innerText.includes(chartButtons.per100)) {
       this.renderChart(target, this.casesPer100k,
         this.deathsPer100k, this.recoveredPer100k);
-      this.addSelectedClassBtn(target);
-    } else if (target.innerText.includes('Last day per 100')) {
+      addSelectedClassBtn(target);
+    } else if (target.innerText.includes(chartButtons.lastDayPer100)) {
       this.renderChart(target, this.todayCasesPer100k,
         this.todayDeathsPer100k, this.todayRecoveredPer100k);
-      this.addSelectedClassBtn(target);
+      addSelectedClassBtn(target);
     }
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  addSelectedClassBtn(target) {
-    target.classList.add('selected-btn');
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  removeClassBtn() {
-    [...radioBtns].forEach((item) => {
-      item.classList.remove('selected-btn');
-      item.classList.remove('not-selected-btn');
-    });
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  getRadioBtnsDefaultBg() {
-    [...radioBtns].forEach((item) => {
-      const radioBtn = item;
-      if (radioBtn.innerHTML.includes('Days')) {
-        radioBtn.classList.add('selected-btn');
-        radioBtn.classList.remove('not-selected-btn');
-      } else {
-        radioBtn.classList.remove('selected-btn');
-        radioBtn.classList.add('not-selected-btn');
-      }
-    });
   }
 
   addRadioBtnsEvent() {

@@ -1035,4 +1035,57 @@ input[type="radio"]:hover:not(:checked) + label {
   color: white;
   text-shadow: 2px 2px 2px rgba(0, 5, 3, 0.439);
 }
+
+.full-screen svg {
+  width: 12px;
+  height: 12px;
+}
+
+.full-screen {
+  background-color: Transparent;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  top: 100px;
+  z-index: 1;
+  outline: none !important;
+  border: none !important;
+}
+
+@media (min-width: 1200px) {
+  .full-screen {
+    left: 300px;
+  }
+}
+
+@media (min-width: 767px) and (max-width: 1199px) {
+  .full-screen {
+    left: 300px;
+  }
+}
+
+@media (min-width: 374px) and (max-width: 767px) {
+  .full-screen {
+    left: 200px;
+  }
+}
+
+@media (min-width: 319px) and (max-width: 374px) {
+  .full-screen {
+    left: 200px;
+  }
+}
+
+.full-screen:before {
+  content: '';
+  width: 20px;
+  float: left;
+  margin-right: 5px;
+  margin-top: -2px;
+}
+
+.full-screen:hover {
+  -webkit-filter: invert(0.2) sepia(1) hue-rotate(200deg);
+          filter: invert(0.2) sepia(1) hue-rotate(200deg);
+}
 /*# sourceMappingURL=style.css.map */
