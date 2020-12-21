@@ -6,6 +6,7 @@ export default class MainMap {
   constructor() {
     this.data = null;
     this.map = null;
+    this.maxCases = null;
     this.stateListener();
   }
 
