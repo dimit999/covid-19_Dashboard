@@ -108,12 +108,13 @@ export default class MainTable {
 
   renderCount() {
     this.countsData.forEach((data) => {
+      const classTd = 'countries-table__row';
       const tr = document.createElement('tr');
-      const caseElem = tableUtils.getElement('td', data.cases);
-      const deathsElem = tableUtils.getElement('td', data.deaths);
-      const recoveredsElem = tableUtils.getElement('td', data.recovered);
-      const flagElem = tableUtils.getElement('td', `<img width="20" src="${data.countryInfo.flag}" alt="country">`);
-      const countryBtn = tableUtils.getElement('td', `<button class="country-btn">${data.country}</button>`);
+      const caseElem = tableUtils.getElement('td', data.cases, classTd);
+      const deathsElem = tableUtils.getElement('td', data.deaths, classTd);
+      const recoveredsElem = tableUtils.getElement('td', data.recovered, classTd);
+      const flagElem = tableUtils.getElement('td', `<img width="20" src="${data.countryInfo.flag}" alt="country">`, classTd);
+      const countryBtn = tableUtils.getElement('td', `<button class="country-btn">${data.country}</button>`, classTd);
 
       this.tbody.append(tr);
       tr.setAttribute('data-country', data.country);

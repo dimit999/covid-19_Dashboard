@@ -21,6 +21,11 @@
   &_wrapper {
     justify-content: center;
     text-align: center;
+    min-height: 500px;
+  }
+
+  &__row {
+    border-color: $color-border !important;
   }
 
   .dataTables_length, .dataTables_info {
@@ -69,10 +74,14 @@
   }
 
   .countries-table__column {
+    background-color: $color-blue-evil;
+    border-color: $color-border;
     text-align: center;
   }
 
   .countries-table__body {
+    background-color: $color-blue-dark;
+    border-color: $color-border;
     text-align: center;
   }
 
@@ -139,4 +148,59 @@
   }
   /* !Descending */
   /* Sorting table logic end */
+}
+
+.dataTable {
+
+  &-top {
+    padding: 10px 0;
+  }
+
+  &-pagination {
+
+    .active {
+
+      a {
+        &:active,
+        &:focus,
+        &:hover {
+          background-color: $color-background-top-elem;
+        }
+      }
+    }
+
+    a {
+      margin: 0;
+      color: $color-white;
+      border-color: $color-border;
+      background-color: $color-background-bottom-elem;
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: $color-background-top-elem;
+      }
+    }
+  }
+
+  &-bottom {
+    padding: 10px 0;
+  }
+
+  &-selector {
+    background-color: $color-blue-dark;
+    color: $color-white;
+    padding: 5px 10px;
+    margin-right: 10px;
+  }
+
+  &-input {
+    background-color: $color-blue-dark;
+    color: $color-white;
+    padding: 10px;
+    border: none;
+    border: 1px solid $color-border;
+    &::placeholder {
+      color: $color-white;
+    }
+  }
 }

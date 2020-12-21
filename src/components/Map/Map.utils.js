@@ -13,6 +13,10 @@ export const addResources = async () => {
   document.body.append(script);
 
   const pass = new Promise((resolve) => {
+    if (typeof window.L === 'object') {
+      resolve(true);
+    }
+
     script.onload = () => {
       resolve(true);
     };
