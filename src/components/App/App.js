@@ -25,7 +25,6 @@ export default class App {
     this.totalListing.render();
     this.ConditionalListing.render();
     this.mainTable.render();
-    this.mainMap.render();
     this.stateListener();
     this.events();
   }

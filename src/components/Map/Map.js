@@ -6,13 +6,13 @@ export default class MainMap {
   constructor() {
     this.data = null;
     this.map = null;
-    this.maxCases = null;
     this.stateListener();
   }
 
   async render() {
     await mapUtils.addResources();
     this.map = mapUtils.buildMap(constants.mapOptions);
+    this.setMarkers();
   }
 
   updateCoord(city) {
@@ -33,7 +33,7 @@ export default class MainMap {
     statObserver.subscribe((data) => {
       if ('map' in data) {
         this.data = data.map;
-        this.setMarkers();
+        this.render();
       }
     });
   }
