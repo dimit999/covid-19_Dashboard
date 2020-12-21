@@ -109,7 +109,6 @@ export default class ChartJS {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
   chartLineWidget(cases, deaths, recovered) {
     const xData = Object.keys(cases);
     if (window.chartInstance) window.chartInstance.destroy();
@@ -123,7 +122,6 @@ export default class ChartJS {
     window.chartInstance.update();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   chartPieWidget(cases, deaths, recovered) {
     if (window.chartInstance) window.chartInstance.destroy();
     window.chartInstance = new Chart(chart, {
