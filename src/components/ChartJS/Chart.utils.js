@@ -29,6 +29,7 @@ function getLineChartOptions(region) {
     title: {
       display: true,
       text: `Statistic for ${region}`,
+      fontColor: 'white',
     },
     animation: {
       easing: 'easeInOutQuad',
@@ -40,11 +41,19 @@ function getLineChartOptions(region) {
           color: 'rgba(200, 200, 200, 0.05)',
           lineWidth: 1,
         },
+        ticks: {
+          fontColor: 'rgb(139, 197, 231)',
+          fontSize: 12,
+        },
       }],
       yAxes: [{
         gridLines: {
-          color: 'rgba(200, 200, 200, 0.08)',
+          color: 'rgba(200, 200, 200, 0.2)',
           lineWidth: 1,
+        },
+        ticks: {
+          fontColor: 'rgb(139, 197, 231)',
+          fontSize: 12,
         },
       }],
     },
@@ -55,6 +64,9 @@ function getLineChartOptions(region) {
     },
     legend: {
       display: true,
+      labels: {
+        fontColor: 'white',
+      },
     },
     point: {
       backgroundColor: 'white',
@@ -62,7 +74,7 @@ function getLineChartOptions(region) {
     tooltips: {
       titleFontFamily: 'Open Sans',
       backgroundColor: 'rgba(0,0,4,0.3)',
-      titleFontColor: 'red',
+      titleFontColor: 'white',
       caretSize: 5,
       cornerRadius: 2,
       xPadding: 10,
@@ -78,6 +90,12 @@ function getPieChartOptions(region) {
     title: {
       display: true,
       text: `Statistic for ${region}`,
+      fontColor: 'white',
+    },
+    legend: {
+      labels: {
+        fontColor: 'white',
+      },
     },
   };
   return pieOptions;
@@ -92,7 +110,7 @@ function getLineChartData(cases, deaths, recovered, xData) {
       backgroundColor: gradientCases,
       pointBackgroundColor: 'rgba(92, 0, 167, 0.5)',
       borderWidth: 1,
-      borderColor: '#911215',
+      borderColor: 'rgba(255,99,132,1)',
       data: cases,
     },
     {
@@ -100,7 +118,7 @@ function getLineChartData(cases, deaths, recovered, xData) {
       backgroundColor: gradientDeaths,
       pointBackgroundColor: 'rgba(255, 0, 0, 3)',
       borderWidth: 1,
-      borderColor: '#911215',
+      borderColor: 'rgba(255, 206, 86, 1)',
       data: deaths,
     },
     {
@@ -108,7 +126,7 @@ function getLineChartData(cases, deaths, recovered, xData) {
       backgroundColor: gradientRecovered,
       pointBackgroundColor: 'rgba(0, 189, 85, 0.5)',
       borderWidth: 1,
-      borderColor: '#911215',
+      borderColor: 'rgba(54, 162, 235, 1)',
       data: recovered,
     }],
   };
@@ -119,7 +137,6 @@ function getPieChartData(cases, deaths, recovered) {
   const data = {
     labels: ['Cases', 'Deaths', 'Recovered'],
     datasets: [{
-      label: 'TEST',
       data: [cases, deaths, recovered],
       backgroundColor: [
         'rgba(92, 0, 167, 0.5)',
