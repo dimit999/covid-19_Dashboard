@@ -10,12 +10,12 @@
   &.leaflet {
 
     &-container {
-      background-color: $color-map-lightgray;
+      background-color: $color-map-gray-light;
     }
   }
 
   .leaflet {
-  
+
     &-control-zoom {
 
       &-in {
@@ -51,16 +51,16 @@
         margin-bottom: 0;
       }
 
-      &-green {
-        color: $color-map-green;
+      &-purple {
+        color: $color-purple-light;
       }
 
       &-red {
         color: $color-map-red;
       }
 
-      &-purple {
-        color: $color-purple-light;
+      &-green {
+        color: $color-map-green;
       }
     }
 
@@ -69,15 +69,15 @@
       &-popup {
 
         &-tip {
-          background-color: $color-map-lightgray;
+          background-color: $color-map-gray-light;
         }
 
         &-content {
 
           &-wrapper {
             border-radius: 0;
-            border: 2px solid $color-map-lightgray;
-            background-color: $color-map-darkkray;
+            border: 2px solid $color-map-gray-light;
+            background-color: $color-map-gray-dark;
           }
         }
       }
@@ -99,6 +99,6 @@
 
 .legend {
   padding: 5px 10px;
-  background-color: $color-map-lightgray;
-  border: 1px solid $color-map-darkkray;
+  background-color: $color-map-gray-light;
+  border: 1px solid $color-map-gray-dark;
 }

@@ -5,21 +5,21 @@ const chart = document.getElementById('chart').getContext('2d');
 const radioBtns = document.querySelectorAll('.radio-buttons-group__btn');
 const lineChartSection = document.querySelector('.line-chart');
 
-const gradientRecovered = chart.createLinearGradient(0, 0, 0, 450);
+const gradientRecovered = chart.createLinearGradient(0, 0, 0, 850);
 const gradientCases = chart.createLinearGradient(0, 0, 0, 650);
-const gradientDeaths = chart.createLinearGradient(0, 0, 0, 650);
+const gradientDeaths = chart.createLinearGradient(0, 0, 0, 550);
 
-gradientRecovered.addColorStop(0, 'rgba(132, 196, 148, 0.5)');
-gradientRecovered.addColorStop(0.5, 'rgba(55, 184, 87, 0.5)');
-gradientRecovered.addColorStop(1, 'rgba(0, 189, 85, 0.5)');
+gradientRecovered.addColorStop(0, 'rgb(4, 221, 76)');
+gradientRecovered.addColorStop(0.5, 'rgb(28, 182, 79)');
+gradientRecovered.addColorStop(1, 'rgb(4, 221, 76)');
 
-gradientCases.addColorStop(0, 'rgba(127, 78, 167, 0.5)');
-gradientCases.addColorStop(0.5, 'rgba(110, 36, 170, 0.5)');
-gradientCases.addColorStop(1, 'rgba(92, 0, 167, 0.5)');
+gradientCases.addColorStop(0, 'rgb(135, 20, 243)');
+gradientCases.addColorStop(0.5, 'rgb(117, 35, 194)');
+gradientCases.addColorStop(1, 'rgb(135, 20, 243)');
 
-gradientDeaths.addColorStop(0, 'rgba(255, 0,0, 8)');
-gradientDeaths.addColorStop(0.5, 'rgba(255, 0, 0, 5.5)');
-gradientDeaths.addColorStop(1, 'rgba(255, 0, 0, 3)');
+gradientDeaths.addColorStop(0, 'rgb(255, 4, 25)');
+gradientDeaths.addColorStop(0.5, 'rgb(184, 44, 56)');
+gradientDeaths.addColorStop(1, 'rgb(255, 4, 25)');
 
 /* Chart options */
 function getLineChartOptions(region) {
@@ -43,8 +43,9 @@ function getLineChartOptions(region) {
           lineWidth: 1,
         },
         ticks: {
-          fontColor: 'rgb(139, 197, 231)',
-          fontSize: 12,
+          fontColor: 'white',
+          fontSize: 13,
+          fontStyle: 'bold',
         },
       }],
       yAxes: [{
@@ -53,8 +54,9 @@ function getLineChartOptions(region) {
           lineWidth: 1,
         },
         ticks: {
-          fontColor: 'rgb(139, 197, 231)',
-          fontSize: 12,
+          fontColor: 'white',
+          fontSize: 13,
+          fontStyle: 'bold',
         },
       }],
     },
@@ -110,7 +112,7 @@ function getLineChartData(cases, deaths, recovered, xData) {
     datasets: [{
       label: 'Cases',
       backgroundColor: gradientCases,
-      pointBackgroundColor: 'rgba(92, 0, 167, 0.5)',
+      pointBackgroundColor: '#956BD6',
       borderWidth: 1,
       borderColor: 'rgba(255,99,132,1)',
       data: cases,
@@ -118,7 +120,7 @@ function getLineChartData(cases, deaths, recovered, xData) {
     {
       label: 'Deaths',
       backgroundColor: gradientDeaths,
-      pointBackgroundColor: 'rgba(255, 0, 0, 3)',
+      pointBackgroundColor: '#ff0000',
       borderWidth: 1,
       borderColor: 'rgba(255, 206, 86, 1)',
       data: deaths,
@@ -126,7 +128,7 @@ function getLineChartData(cases, deaths, recovered, xData) {
     {
       label: 'Recovered',
       backgroundColor: gradientRecovered,
-      pointBackgroundColor: 'rgba(0, 189, 85, 0.5)',
+      pointBackgroundColor: '#07c400',
       borderWidth: 1,
       borderColor: 'rgba(54, 162, 235, 1)',
       data: recovered,
@@ -141,9 +143,9 @@ function getPieChartData(cases, deaths, recovered) {
     datasets: [{
       data: [cases, deaths, recovered],
       backgroundColor: [
-        'rgba(92, 0, 167, 0.5)',
-        'rgba(255, 0, 0, 3)',
-        'rgba(0, 189, 85, 0.5)'],
+        'rgb(135, 20, 243)',
+        '#ff0000',
+        '#07c400'],
       borderColor: [
         'rgba(255,99,132,1)',
         'rgba(255, 206, 86, 1)',

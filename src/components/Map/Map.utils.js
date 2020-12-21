@@ -24,9 +24,9 @@ export const addResources = async () => {
 export const getPopupChunk = (data) => {
   const chunk = `
     <b>${data.country}:</b><br>
-    <span class="map-popup--span-green">cases: ${data.cases}</span><br>
+    <span class="map-popup--span-purple">cases: ${data.cases}</span><br>
     <span class="map-popup--span-red">deaths: ${data.deaths}</span><br>
-    <span class="map-popup--span-purple">recovered: ${data.recovered}</span>
+    <span class="map-popup--span-green">recovered: ${data.recovered}</span>
   `;
 
   return chunk;
