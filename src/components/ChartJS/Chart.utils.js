@@ -137,6 +137,7 @@ function getPieChartData(cases, deaths, recovered) {
   return data;
 }
 
+/* Get fullscreen for chart */
 function fullScreenBtnEvent() {
   document.querySelector('.full-screen').addEventListener('click', () => { utils.openFullscreen(lineChartSection); });
 }
