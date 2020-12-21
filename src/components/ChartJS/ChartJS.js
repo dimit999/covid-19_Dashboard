@@ -7,6 +7,7 @@ import {
 } from './Chart.utils';
 import utils from '../../Utils';
 import * as constants from '../../constants/constants';
+import chartButtons from './constants';
 
 export default class ChartJS {
   constructor() {
@@ -136,17 +137,17 @@ export default class ChartJS {
     if (this.selectedCountry) {
       this.commonTotalCountriesData.forEach((element) => {
         if (element.country === this.selectedCountry) {
-          if (target.innerText.includes('Total')) {
+          if (target.innerText.includes(chartButtons.total)) {
             this.chartPieWidget(element.cases,
               element.deaths, element.recovered);
-          } else if (target.innerText === 'Last day') {
+          } else if (target.innerText === chartButtons.lastDay) {
             this.chartPieWidget(element.todayCases,
               element.todayDeaths, element.todayRecovered);
-          } else if (target.innerText.includes('Per 100')) {
+          } else if (target.innerText.includes(chartButtons.per100)) {
             this.chartPieWidget(Math.ceil((element.cases / element.population) * 100000),
               Math.ceil((element.deaths / element.population) * 100000),
               Math.ceil((element.recovered / element.population) * 100000));
-          } else if (target.innerText.includes('Last day per 100')) {
+          } else if (target.innerText.includes(chartButtons.lastDayPer100)) {
             this.chartPieWidget(Math.ceil((element.todayCases / element.population) * 100000),
               Math.ceil((element.todayDeaths / element.population) * 100000),
               Math.ceil((element.todayRecovered / element.population) * 100000));
@@ -161,20 +162,20 @@ export default class ChartJS {
   /* Render Chart */
   renderCharts({ target }) {
     removeClassBtn();
-    if (target.innerText.includes('Days')) {
+    if (target.innerText.includes(chartButtons.days)) {
       this.renderDefaultTotalChart();
       getRadioBtnsDefaultBg();
-    } else if (target.innerText.includes('Total')) {
+    } else if (target.innerText.includes(chartButtons.total)) {
       this.renderChart(target, this.allCases, this.allDeaths, this.allRecovered);
       addSelectedClassBtn(target);
-    } else if (target.innerText === 'Last day') {
+    } else if (target.innerText === chartButtons.lastDay) {
       this.renderChart(target, this.todayCases, this.todayDeaths, this.todayRecovered);
       addSelectedClassBtn(target);
-    } else if (target.innerText.includes('Per 100')) {
+    } else if (target.innerText.includes(chartButtons.per100)) {
       this.renderChart(target, this.casesPer100k,
         this.deathsPer100k, this.recoveredPer100k);
       addSelectedClassBtn(target);
-    } else if (target.innerText.includes('Last day per 100')) {
+    } else if (target.innerText.includes(chartButtons.lastDayPer100)) {
       this.renderChart(target, this.todayCasesPer100k,
         this.todayDeathsPer100k, this.todayRecoveredPer100k);
       addSelectedClassBtn(target);
