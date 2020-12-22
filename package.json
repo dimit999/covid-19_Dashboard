@@ -80,6 +80,7 @@
   "description": "",
   "dependencies": {
     "chart.js": "^2.9.4",
+    "simple-keyboard": "^2.32.68",
     "vanilla-datatables": "^1.6.16"
   }
 }
