@@ -4,7 +4,7 @@ export const mapOptions = {
 };
 
 export const iconOptions = {
-  iconUrl: '../assets/images/svg/circle_map.svg',
+  iconUrl: './assets/images/svg/circle_map.svg',
   iconSize: [10, 10],
 };
 
