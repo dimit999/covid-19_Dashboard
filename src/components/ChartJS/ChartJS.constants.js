@@ -1,9 +1,9 @@
 const chartButtons = {
-  historical: 'Historical',
-  total: 'Total',
-  lastDay: 'Last day',
-  per100: 'Per 100',
-  lastDayPer100: 'Last day per 100',
+  historical: 'size_1',
+  total: 'size_2',
+  lastDay: 'size_3',
+  per100: 'size_4',
+  lastDayPer100: 'size_5',
 };
 
 export default chartButtons;
