@@ -17,7 +17,7 @@ export default class App {
     this.mainTable = new MainTable(constants.MaintableData);
     this.mainMap = new MainMap();
     this.countryInput = document.querySelector('.common-tables__country-title input');
-    this.countryResetBtn = document.querySelector('.reset-btn');
+    this.countryResetBtns = document.querySelectorAll('.reset-btn');
     this.currentCountry = '';
   }
 
@@ -40,13 +40,15 @@ export default class App {
   }
 
   events() {
-    this.countryResetBtn.addEventListener('click', () => {
-      this.currentCountry = '';
-      this.updateCountryInput();
-      this.ConditionalListing.update(this.currentCountry);
-      this.ChartJS.update(this.currentCountry);
-      this.mainTable.setSearchValue(this.currentCountry);
-      this.mainMap.updateCoord(this.currentCountry);
+    [...this.countryResetBtns].forEach((item) => {
+      item.addEventListener('click', () => {
+        this.currentCountry = '';
+        this.updateCountryInput();
+        this.ConditionalListing.update(this.currentCountry);
+        this.ChartJS.update(this.currentCountry);
+        this.mainTable.setSearchValue(this.currentCountry);
+        this.mainMap.updateCoord(this.currentCountry);
+      });
     });
   }
 
