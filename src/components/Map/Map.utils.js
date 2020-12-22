@@ -1,29 +1,8 @@
+import '../../modules/leaflet/leaflet.css';
+
 import statObserver from '../Observer';
 import * as constants from './Map.constants';
-
-export const addResources = async () => {
-  const css = document.createElement('link');
-  const script = document.createElement('script');
-
-  css.setAttribute('rel', 'stylesheet');
-  css.setAttribute('href', 'https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css');
-  script.setAttribute('src', 'https://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js');
-
-  document.body.append(css);
-  document.body.append(script);
-
-  const pass = new Promise((resolve) => {
-    if (typeof window.L === 'object') {
-      resolve(true);
-    }
-
-    script.onload = () => {
-      resolve(true);
-    };
-  });
-
-  return pass;
-};
+import '../../modules/leaflet/leaflet';
 
 export const getPopupChunk = (data) => {
   const chunk = `
@@ -38,7 +17,7 @@ export const getPopupChunk = (data) => {
 
 export const buildMap = (mapOptions) => {
   const map = new window.L.Map('map', mapOptions);
-  const layer = new window.L.TileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png');
+  const layer = new window.L.TileLayer(constants.config.layersUrl);
 
   map.addLayer(layer);
   return map;

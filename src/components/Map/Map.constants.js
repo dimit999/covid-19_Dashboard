@@ -8,6 +8,10 @@ export const iconOptions = {
   iconSize: [10, 10],
 };
 
+export const config = {
+  layersUrl: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png',
+};
+
 export const measures = [15000000, 10000000, 1000000, 500000, 50000];
 
 /*
