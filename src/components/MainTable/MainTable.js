@@ -27,12 +27,12 @@ export default class MainTable {
       }
     });
 
-    this.search.addEventListener('input', async () => {
+    this.search.addEventListener('input', () => {
       if (this.timer !== undefined) {
         clearInterval(this.timer);
       }
 
-      this.timer = await setTimeout(() => {
+      this.timer = setTimeout(() => {
         let pass = false;
         let word = null;
 
@@ -43,17 +43,23 @@ export default class MainTable {
         if (word) {
           pass = true;
           this.country = word;
+        } else {
+          pass = false;
         }
 
-        if (!pass && this.tbody.querySelectorAll('tr').length === 1) {
-          this.country = this.tbody.querySelector('tr').getAttribute('data-country');
+        if (!pass && this.tbody.querySelectorAll('.countries-table__cont').length === 1) {
+          pass = true;
+          this.country = this.tbody.querySelector('.countries-table__cont').getAttribute('data-country');
         }
 
         if (this.search.value.length === 0) {
+          pass = true;
           this.country = '';
         }
 
-        this.stateSend();
+        if (pass) {
+          this.stateSend();
+        }
       }, 500);
     });
   }
@@ -109,7 +115,8 @@ export default class MainTable {
   renderCount() {
     this.countsData.forEach((data) => {
       const classTd = 'countries-table__row';
-      const tr = document.createElement('tr');
+      const classTr = 'countries-table__cont';
+      const tr = tableUtils.getElement('tr', '', classTr);
       const caseElem = tableUtils.getElement('td', data.cases, classTd);
       const deathsElem = tableUtils.getElement('td', data.deaths, classTd);
       const recoveredsElem = tableUtils.getElement('td', data.recovered, classTd);

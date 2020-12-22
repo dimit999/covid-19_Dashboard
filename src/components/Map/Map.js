@@ -10,7 +10,6 @@ export default class MainMap {
   }
 
   async render() {
-    await mapUtils.addResources();
     this.map = mapUtils.buildMap(constants.mapOptions);
     this.setMarkers();
   }
