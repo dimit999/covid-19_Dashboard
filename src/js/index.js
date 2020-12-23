@@ -2,17 +2,17 @@ import './spinner';
 import App from '../components/App';
 import CurrentDate from './currentDate';
 
-// import * as keyboard from './keyboard';
+import * as keyboard from './keyboard';
 
 const app = new App();
 app.init();
 
-// window.onload = function fn() {
-//   const gameResultsContainer = document.querySelector('.dataTable-search');
-//   const defaultCardElement = '<div class="simple-keyboard"></div>';
-//   gameResultsContainer.insertAdjacentHTML('afterBegin', defaultCardElement);
-//   keyboard.initKeyboard();
-// };
+window.onload = function fn() {
+  // const gameResultsContainer = document.querySelector('.dataTable-input');
+  // const defaultCardElement = '<div class="simple-keyboard"></div>';
+  // gameResultsContainer.insertAdjacentHTML('afterEnd', defaultCardElement);
+  keyboard.initKeyboard();
+};
 
 const currentDate = new CurrentDate();
 currentDate.init();
