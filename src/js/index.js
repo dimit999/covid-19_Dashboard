@@ -1,4 +1,12 @@
 import './spinner';
+import App from '../components/App';
+import CurrentDate from './currentDate';
+
+const app = new App();
+app.init();
+
+const currentDate = new CurrentDate();
+currentDate.init();
 
 /* Import assets to dist folder */
 function requireAll(assets) {
