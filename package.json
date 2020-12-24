@@ -8,7 +8,10 @@
     "build": "webpack",
     "start": "npx webpack --watch",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix --color"
+    "lint:fix": "eslint ./src --fix --color",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --colors"
   },
   "keywords": [],
   "author": "DA",
@@ -21,6 +24,7 @@
     "@zeit/next-sass": "1.0.1",
     "autoprefixer": "^9.8.6",
     "babel-core": "^6.26.3",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.5.3",
@@ -39,6 +43,9 @@
     "html-loader": "^1.3.2",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^4.3.0",
+    "jest": "^26.6.3",
+    "jest-fetch-mock": "^3.0.3",
+    "jest-transform-stub": "^2.0.0",
     "lint-staged": "^10.5.1",
     "mdbootstrap": "^4.19.2",
     "mini-css-extract-plugin": "^1.3.1",
@@ -68,6 +75,10 @@
       "npm run lint:fix",
       "git add"
     ]
+  },
+  "jest": {
+    "automock": true,
+    "setupFiles": ["./setupJest.js"]
   },
   "repository": {
     "type": "git",
